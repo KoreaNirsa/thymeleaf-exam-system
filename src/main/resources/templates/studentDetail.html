@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>학생 상세 정보 - 평가 시스템</title>
+<link rel="stylesheet" href="header.css">
+<link rel="stylesheet" href="studentDetail.css">
+<link
+	href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+	rel="stylesheet">
+</head>
+<body>
+	<header>
+		<div class="header-left">
+			<h1>평가 시스템</h1>
+		</div>
+		<nav class="main-nav">
+			<div class="nav-links">
+				<a href="index.html" class="nav-item">대시보드</a>
+				<div class="instructor-menu">
+					<a href="#" class="nav-item active">강사 페이지 ▾</a>
+					<div class="submenu">
+						<a href="studentList.html" class="submenu-item">학생 리스트</a> <a
+							href="evaluation.html" class="submenu-item">평가 페이지</a>
+					</div>
+				</div>
+			</div>
+			<div class="user-info">
+				<span class="user-name">홍길동</span> <span class="user-role">강사</span>
+			</div>
+		</nav>
+	</header>
+
+	<main>
+		<div class="student-detail">
+			<div class="detail-header">
+				<h2 class="section-title">학생 상세 정보</h2>
+			</div>
+			<div class="student-info-card">
+				<div class="info-row">
+					<div class="info-item">
+						<label>이름</label> <span>김학생</span>
+					</div>
+					<div class="info-item">
+						<label>연락처</label> <span>010-1234-5678</span>
+					</div>
+					<div class="info-item">
+						<label>평균 점수</label> <span class="score">95.5</span>
+					</div>
+					<div class="info-item">
+						<label>등수</label> <span class="rank">1</span>
+					</div>
+					<div class="info-item">
+						<button class="password-change-btn" onclick="openPasswordModal()">
+							비밀번호 수정</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="scores-section">
+				<h3>과목별 평가 점수</h3>
+				<table class="scores-table">
+					<thead>
+						<tr>
+							<th>과목명</th>
+							<th>1차 평가</th>
+							<th>2차 평가</th>
+							<th>피드백</th>
+							<th>액션</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>JavaScript 기초</td>
+							<td>95</td>
+							<td>98</td>
+							<td>
+								<button class="feedback-btn"
+									onclick="openFeedbackModal('JavaScript 기초')">피드백 확인</button>
+							</td>
+							<td>
+								<button class="edit-btn"
+									onclick="openScoreModal('JavaScript 기초')">점수 수정</button>
+							</td>
+						</tr>
+						<tr>
+							<td>React 심화</td>
+							<td>92</td>
+							<td>94</td>
+							<td>
+								<button class="feedback-btn"
+									onclick="openFeedbackModal('React 심화')">피드백 확인</button>
+							</td>
+							<td>
+								<button class="edit-btn" onclick="openScoreModal('React 심화')">점수
+									수정</button>
+							</td>
+						</tr>
+						<tr>
+							<td>React 심화</td>
+							<td>92</td>
+							<td>94</td>
+							<td>
+								<button class="feedback-btn"
+									onclick="openFeedbackModal('React 심화')">피드백 확인</button>
+							</td>
+							<td>
+								<button class="edit-btn" onclick="openScoreModal('React 심화')">점수
+									수정</button>
+							</td>
+						</tr>
+						<tr>
+							<td>React 심화</td>
+							<td>92</td>
+							<td>94</td>
+							<td>
+								<button class="feedback-btn"
+									onclick="openFeedbackModal('React 심화')">피드백 확인</button>
+							</td>
+							<td>
+								<button class="edit-btn" onclick="openScoreModal('React 심화')">점수
+									수정</button>
+							</td>
+						</tr>
+						<tr>
+							<td>React 심화</td>
+							<td>92</td>
+							<td>94</td>
+							<td>
+								<button class="feedback-btn"
+									onclick="openFeedbackModal('React 심화')">피드백 확인</button>
+							</td>
+							<td>
+								<button class="edit-btn" onclick="openScoreModal('React 심화')">점수
+									수정</button>
+							</td>
+						</tr>
+						<tr>
+							<td>React 심화</td>
+							<td>92</td>
+							<td>94</td>
+							<td>
+								<button class="feedback-btn"
+									onclick="openFeedbackModal('React 심화')">피드백 확인</button>
+							</td>
+							<td>
+								<button class="edit-btn" onclick="openScoreModal('React 심화')">점수
+									수정</button>
+							</td>
+						</tr>
+						<tr>
+							<td>React 심화</td>
+							<td>92</td>
+							<td>94</td>
+							<td>
+								<button class="feedback-btn"
+									onclick="openFeedbackModal('React 심화')">피드백 확인</button>
+							</td>
+							<td>
+								<button class="edit-btn" onclick="openScoreModal('React 심화')">점수
+									수정</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="back-button-container">
+			<a href="studentList.html" class="back-btn">← 목록으로</a>
+		</div>
+	</main>
+
+	<!-- 비밀번호 수정 모달 -->
+	<div id="passwordModal" class="modal">
+		<div class="modal-content">
+			<span class="close" onclick="closePasswordModal()">&times;</span>
+			<h2>비밀번호 수정</h2>
+			<form id="passwordForm" class="password-form">
+				<div class="form-group">
+					<label for="newPassword">새 비밀번호</label> <input type="password"
+						id="newPassword" required>
+				</div>
+				<div class="form-group">
+					<label for="confirmPassword">비밀번호 확인</label> <input type="password"
+						id="confirmPassword" required>
+				</div>
+				<div class="password-error" id="passwordError"></div>
+				<div class="form-actions">
+					<button type="submit" class="submit-btn">수정</button>
+					<button type="button" class="cancel-btn"
+						onclick="closePasswordModal()">취소</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<!-- 점수 수정 모달 -->
+	<div id="scoreModal" class="modal">
+		<div class="modal-content">
+			<span class="close" onclick="closeScoreModal()">&times;</span>
+			<h2>점수 수정</h2>
+			<form id="scoreForm" class="score-form">
+				<div class="form-group">
+					<label>과목명</label> <input type="text" id="subjectName" readonly>
+				</div>
+				<div class="form-group">
+					<label>1차 평가 점수</label> <input type="number" id="score1" min="0"
+						max="100" required>
+				</div>
+				<div class="form-group">
+					<label>2차 평가 점수</label> <input type="number" id="score2" min="0"
+						max="100" required>
+				</div>
+				<div class="form-actions">
+					<button type="submit" class="submit-btn">저장</button>
+					<button type="button" class="cancel-btn"
+						onclick="closeScoreModal()">취소</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<!-- 피드백 모달 -->
+	<div id="feedbackModal" class="modal">
+		<div class="modal-content">
+			<span class="close" onclick="closeFeedbackModal()">&times;</span>
+			<h2>피드백</h2>
+			<form id="feedbackForm" class="feedback-form">
+				<div class="form-group">
+					<label>과목명</label> <input type="text" id="feedbackSubject" readonly>
+				</div>
+				<div class="form-group">
+					<label>피드백 내용</label>
+					<textarea id="feedbackContent" maxlength="1000"
+						placeholder="피드백을 입력하세요 (최대 1000자)"></textarea>
+					<div class="char-count">
+						<span id="currentChar">0</span>/1000자
+					</div>
+				</div>
+				<div class="form-actions">
+					<button type="submit" class="submit-btn">저장</button>
+					<button type="button" class="cancel-btn"
+						onclick="closeFeedbackModal()">취소</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	<script>
+        // 비밀번호 수정 모달
+        const passwordModal = document.getElementById('passwordModal');
+        const passwordForm = document.getElementById('passwordForm');
+        const passwordError = document.getElementById('passwordError');
+
+        function openPasswordModal() {
+            passwordModal.style.display = "block";
+            passwordForm.reset();
+            passwordError.textContent = '';
+        }
+
+        function closePasswordModal() {
+            passwordModal.style.display = "none";
+        }
+
+        passwordForm.onsubmit = (e) => {
+            e.preventDefault();
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (newPassword !== confirmPassword) {
+                passwordError.textContent = '비밀번호가 일치하지 않습니다.';
+                return;
+            }
+
+            // 비밀번호 변경 로직 추가
+            alert('비밀번호가 성공적으로 변경되었습니다.');
+            closePasswordModal();
+        };
+
+        // 점수 수정 모달
+        const scoreModal = document.getElementById('scoreModal');
+        const scoreForm = document.getElementById('scoreForm');
+
+        function openScoreModal(subject) {
+            document.getElementById('subjectName').value = subject;
+            scoreModal.style.display = "block";
+        }
+
+        function closeScoreModal() {
+            scoreModal.style.display = "none";
+        }
+
+        scoreForm.onsubmit = (e) => {
+            e.preventDefault();
+            // 점수 저장 로직 추가
+            closeScoreModal();
+        };
+
+        // 피드백 모달
+        const feedbackModal = document.getElementById('feedbackModal');
+        const feedbackForm = document.getElementById('feedbackForm');
+        const feedbackContent = document.getElementById('feedbackContent');
+        const currentChar = document.getElementById('currentChar');
+
+        function openFeedbackModal(subject) {
+            document.getElementById('feedbackSubject').value = subject;
+            feedbackModal.style.display = "block";
+        }
+
+        function closeFeedbackModal() {
+            feedbackModal.style.display = "none";
+        }
+
+        feedbackContent.addEventListener('input', function() {
+            currentChar.textContent = this.value.length;
+        });
+
+        feedbackForm.onsubmit = (e) => {
+            e.preventDefault();
+            // 피드백 저장 로직 추가
+            closeFeedbackModal();
+        };
+
+        // 모달 외부 클릭 시 닫기
+        window.onclick = (event) => {
+            if (event.target == scoreModal) {
+                closeScoreModal();
+            }
+            if (event.target == feedbackModal) {
+                closeFeedbackModal();
+            }
+        }
+
+                const menu = document.querySelector('.instructor-menu');
+        const submenu = document.querySelector('.submenu');
+        let timeout;
+
+        menu.addEventListener('mouseenter', () => {
+            clearTimeout(timeout);
+            submenu.style.display = 'block';
+        });
+
+        menu.addEventListener('mouseleave', () => {
+            timeout = setTimeout(() => {
+                submenu.style.display = 'none';
+            }, 300); 
+        });
+    </script>
+	</script>
+</body>
+</html>

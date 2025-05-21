@@ -1,0 +1,12 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/base-layout}">
+	<th:block layout:fragment="pageHead">
+		<link rel="stylesheet" type="text/css" href="/css/index.css">
+	</th:block>
+	<th:block layout:fragment="content">
+		<th:block th:replace="~{fragments/section/index/dashboard :: dashboard}"></th:block>
+		<th:block th:replace="~{fragments/section/index/scoreModal :: scoreModal}"></th:block>
+		<th:block th:replace="~{fragments/scripts/submenu :: submenu}"></th:block>
+		<th:block th:replace="~{fragments/scripts/indexScripts :: indexScripts}"></th:block>
+	</th:block>
+</html>

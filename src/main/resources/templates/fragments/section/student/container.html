@@ -1,0 +1,200 @@
+<th:block th:fragment="studentManagementContainer">
+        <div class="student-management">
+            <div class="management-header">
+                <h2 class="section-title">학생 관리</h2>
+                <button class="add-student-btn" onclick="openAddModal()">
+                    + 학생 추가
+                </button>
+            </div>
+
+            <div class="student-list-container">
+                <table class="student-table">
+                    <thead>
+                        <tr>
+                            <th>번호</th>
+                            <th>기수</th>
+                            <th>이름</th>
+                            <th>연락처</th>
+                            <th>평균 점수</th>
+                            <th>등수</th>
+                            <th>상세</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr onclick="location.href='studentDetail.html?id=1'" style="cursor: pointer;">
+                            <td>1</td>
+                            <td>23기</td>
+                            <td>김학생</td>
+                            <td>010-1234-5678</td>
+                            <td>95.5</td>
+                            <td>1</td>
+                            <td>
+                                <button class="detail-btn">상세보기</button>
+                            </td>
+                        </tr>
+                        <tr onclick="location.href='studentDetail.html?id=2'" style="cursor: pointer;">
+                            <td>2</td>
+                            <td>23기</td>
+                            <td>이학생</td>
+                            <td>010-2345-6789</td>
+                            <td>92.3</td>
+                            <td>2</td>
+                            <td>
+                                <button class="detail-btn">상세보기</button>
+                            </td>
+                        </tr>
+                        <tr onclick="location.href='studentDetail.html?id=3'" style="cursor: pointer;">
+                            <td>3</td>
+                            <td>23기</td>
+                            <td>박학생</td>
+                            <td>010-3456-7890</td>
+                            <td>88.7</td>
+                            <td>3</td>
+                            <td>
+                                <button class="detail-btn">상세보기</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+</th:block>
+
+<th:block th:fragment="studentDetailContainer">
+		<div class="student-detail">
+			<div class="detail-header">
+				<h2 class="section-title">학생 상세 정보</h2>
+			</div>
+			<div class="student-info-card">
+				<div class="info-row">
+					<div class="info-item">
+						<label>이름</label> <span>김학생</span>
+					</div>
+					<div class="info-item">
+						<label>연락처</label> <span>010-1234-5678</span>
+					</div>
+					<div class="info-item">
+						<label>평균 점수</label> <span class="score">95.5</span>
+					</div>
+					<div class="info-item">
+						<label>등수</label> <span class="rank">1</span>
+					</div>
+					<div class="info-item">
+						<button class="password-change-btn" onclick="openPasswordModal()">
+							비밀번호 수정</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="scores-section">
+				<h3>과목별 평가 점수</h3>
+				<table class="scores-table">
+					<thead>
+						<tr>
+							<th>과목명</th>
+							<th>1차 평가</th>
+							<th>2차 평가</th>
+							<th>피드백</th>
+							<th>액션</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>JavaScript 기초</td>
+							<td>95</td>
+							<td>98</td>
+							<td>
+								<button class="feedback-btn"
+									onclick="openFeedbackModal('JavaScript 기초')">피드백 확인</button>
+							</td>
+							<td>
+								<button class="edit-btn"
+									onclick="openScoreModal('JavaScript 기초')">점수 수정</button>
+							</td>
+						</tr>
+						<tr>
+							<td>React 심화</td>
+							<td>92</td>
+							<td>94</td>
+							<td>
+								<button class="feedback-btn"
+									onclick="openFeedbackModal('React 심화')">피드백 확인</button>
+							</td>
+							<td>
+								<button class="edit-btn" onclick="openScoreModal('React 심화')">점수
+									수정</button>
+							</td>
+						</tr>
+						<tr>
+							<td>React 심화</td>
+							<td>92</td>
+							<td>94</td>
+							<td>
+								<button class="feedback-btn"
+									onclick="openFeedbackModal('React 심화')">피드백 확인</button>
+							</td>
+							<td>
+								<button class="edit-btn" onclick="openScoreModal('React 심화')">점수
+									수정</button>
+							</td>
+						</tr>
+						<tr>
+							<td>React 심화</td>
+							<td>92</td>
+							<td>94</td>
+							<td>
+								<button class="feedback-btn"
+									onclick="openFeedbackModal('React 심화')">피드백 확인</button>
+							</td>
+							<td>
+								<button class="edit-btn" onclick="openScoreModal('React 심화')">점수
+									수정</button>
+							</td>
+						</tr>
+						<tr>
+							<td>React 심화</td>
+							<td>92</td>
+							<td>94</td>
+							<td>
+								<button class="feedback-btn"
+									onclick="openFeedbackModal('React 심화')">피드백 확인</button>
+							</td>
+							<td>
+								<button class="edit-btn" onclick="openScoreModal('React 심화')">점수
+									수정</button>
+							</td>
+						</tr>
+						<tr>
+							<td>React 심화</td>
+							<td>92</td>
+							<td>94</td>
+							<td>
+								<button class="feedback-btn"
+									onclick="openFeedbackModal('React 심화')">피드백 확인</button>
+							</td>
+							<td>
+								<button class="edit-btn" onclick="openScoreModal('React 심화')">점수
+									수정</button>
+							</td>
+						</tr>
+						<tr>
+							<td>React 심화</td>
+							<td>92</td>
+							<td>94</td>
+							<td>
+								<button class="feedback-btn"
+									onclick="openFeedbackModal('React 심화')">피드백 확인</button>
+							</td>
+							<td>
+								<button class="edit-btn" onclick="openScoreModal('React 심화')">점수
+									수정</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="back-button-container">
+			<a href="studentList.html" class="back-btn">← 목록으로</a>
+		</div>
+</th:block> 
