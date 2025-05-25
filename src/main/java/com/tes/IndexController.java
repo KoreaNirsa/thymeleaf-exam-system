@@ -1,4 +1,4 @@
-package com.nirsa_exam_project;
+package com.tes;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
