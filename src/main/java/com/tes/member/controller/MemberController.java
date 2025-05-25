@@ -13,6 +13,16 @@ import com.tes.member.service.MemberService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * 사용자 인증과 관련된 기능(로그인, 세션 처리 등)을 담당하는 컨트롤러입니다.
+ * <p>
+ * 로그인 페이지 진입 및 로그인 처리 요청을 받아 처리하며,
+ * 로그인 성공 시 사용자 정보를 세션에 저장합니다.
+ * </p>
+ * 
+ * @author 
+ * @since 1.0
+ */
 @Controller
 @RequiredArgsConstructor
 public class MemberController {
@@ -34,6 +44,14 @@ public class MemberController {
 		return "pages/login";
 	}
 	
+    /**
+     * 로그인 요청을 처리하고 사용자 정보를 세션에 저장한 후,
+     * 대시보드 페이지로 리다이렉트합니다.
+     *
+     * @param loginReqDTO 사용자가 입력한 로그인 요청 DTO
+     * @param session     현재 사용자 세션
+     * @return 대시보드 페이지로의 리다이렉트 경로
+     */
 	@PostMapping("/login")
 	public String doLogin(@ModelAttribute LoginReqDTO loginReqDTO, HttpSession session) {
 		LoginResDTO response = loginService.login(loginReqDTO);

@@ -20,7 +20,7 @@ CREATE TABLE member (
 CREATE TABLE evaluation_status (
   evaluation_status_id BIGINT AUTO_INCREMENT PRIMARY KEY COMMENT '평가 상태 고유 ID',
   subject_id BIGINT COMMENT '평가가 진행되는 과목 ID',
-  status VARCHAR(50) COMMENT '평가 상태 (예: STARTED, ENDED)',
+  status VARCHAR(50) COMMENT '평가 상태 (예: 시작 대기, 평가 시작, 채점 진행중, 점수 확인)',
   round INT COMMENT '평가 차수 (1: 1차, 2: 2차)',
   FOREIGN KEY (subject_id) REFERENCES subject(subject_id)
 );
