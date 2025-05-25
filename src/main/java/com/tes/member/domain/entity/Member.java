@@ -8,8 +8,9 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 
 /**
  * 시스템에 등록된 사용자(학생 또는 강사)를 나타내는 JPA 엔티티입니다.
@@ -28,7 +29,8 @@ import lombok.Setter;
 @Entity
 @Table(name="member")
 @Getter
-@Setter
+@Builder
+@AllArgsConstructor 
 public class Member {
     /** 회원 고유 식별자 */
     @Id

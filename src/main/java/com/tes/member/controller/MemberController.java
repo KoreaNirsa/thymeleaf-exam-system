@@ -2,15 +2,18 @@ package com.tes.member.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.tes.global.exception.UserException;
 import com.tes.member.model.request.LoginReqDTO;
 import com.tes.member.model.response.LoginResDTO;
 import com.tes.member.service.MemberService;
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -53,10 +56,18 @@ public class MemberController {
      * @return 대시보드 페이지로의 리다이렉트 경로
      */
 	@PostMapping("/login")
-	public String doLogin(@ModelAttribute LoginReqDTO loginReqDTO, HttpSession session) {
+	public String doLogin(@ModelAttribute @Valid LoginReqDTO loginReqDTO, 
+							BindingResult bindingResult,
+							HttpSession session,
+							Model model) {
+		
+	    if (bindingResult.hasErrors()) {
+	        model.addAttribute("errorMessage", "유효성 검증 실패");
+	        return "pages/login";
+	    }
+	    
 		LoginResDTO response = loginService.login(loginReqDTO);
 		session.setAttribute("member", response);
 	    return "redirect:/subject/dashboard";
 	}
-
 }

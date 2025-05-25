@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.tes.global.exception.UserException;
+import com.tes.member.model.request.LoginReqDTO;
 import com.tes.member.service.MemberServiceImpl;
 
 /**
@@ -23,6 +24,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(UserException.class)
     public String handleUserException(UserException e, Model model) {
     	logger.warn("UserException 발생: {}", e.getMessage());
+    	model.addAttribute("loginReqDTO", new LoginReqDTO());
         model.addAttribute("errorMessage", e.getMessage());
         return e.getRedirectPath(); // e.g., "pages/login"
     }

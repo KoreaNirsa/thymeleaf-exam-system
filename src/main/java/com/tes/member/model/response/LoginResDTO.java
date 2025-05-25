@@ -3,6 +3,10 @@ package com.tes.member.model.response;
 import com.tes.member.domain.entity.Member;
 import com.tes.member.enums.MemberRole;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -20,6 +24,7 @@ import lombok.Getter;
  */
 @Getter
 @Builder
+@AllArgsConstructor
 public class LoginResDTO {
     /** 사용자 고유 식별자 */
     private Long id;

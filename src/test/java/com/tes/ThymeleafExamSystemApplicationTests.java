@@ -1,10 +1,10 @@
-package com.nirsa_exam_project;
+package com.tes;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class NirsaExamProjectApplicationTests {
+class ThymeleafExamSystemApplicationTests {
 
 	@Test
 	void contextLoads() {
