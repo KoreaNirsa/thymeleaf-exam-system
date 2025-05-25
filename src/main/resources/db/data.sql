@@ -3,16 +3,17 @@ INSERT INTO subject (name, first_exam_date, second_exam_date)
 VALUES ('웹 프로그래밍 기초', '2025-06-10', '2025-07-05');
 
 -- 2. 사용자(member) – 강사
-INSERT INTO member (member_id, name, generation, phone, password, role)
-VALUES (1, '김재섭', 0, '010-8888-9999', '$2a$10$u.6YeYJGWpRYg8Y.lcCrzOdz1U.D3oV1PFAn9BBzvfK/ikZWLSP9G', 'INSTRUCTOR');
+INSERT INTO member (name, generation, phone, password, role)
+VALUES ('김재섭', 0, '010-8888-9999', '$2a$10$u.6YeYJGWpRYg8Y.lcCrzOdz1U.D3oV1PFAn9BBzvfK/ikZWLSP9G', 'INSTRUCTOR');
 
 -- 3. 사용자(member) – 학생
 INSERT INTO member (name, generation, phone, password, role)
 VALUES ('이은하', '15기', '010-2345-6789', '$2a$10$u.6YeYJGWpRYg8Y.lcCrzOdz1U.D3oV1PFAn9BBzvfK/ikZWLSP9G', 'STUDENT');
 
 -- 4. 평가 상태(evaluation_status) – 과목 ID 1 기준
+-- "시작 대기", "평가 시작", "채점 진행중", "점수 확인"
 INSERT INTO evaluation_status (subject_id, status, round)
-VALUES (1, 'STARTED', 1);
+VALUES (1, '점수 확인', 1);
 
 -- 5. 문제 정보(exam_question) – 과목 ID 1 기준
 INSERT INTO exam_question (subject_id, round, question_text)

@@ -11,7 +11,6 @@ import com.tes.member.model.response.LoginResDTO;
 import com.tes.member.service.MemberService;
 
 import jakarta.servlet.http.HttpSession;
-import jakarta.websocket.Session;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -39,8 +38,7 @@ public class MemberController {
 	public String doLogin(@ModelAttribute LoginReqDTO loginReqDTO, HttpSession session) {
 		LoginResDTO response = loginService.login(loginReqDTO);
 		session.setAttribute("member", response);
-		
-	    return "pages/dashboard";
+	    return "redirect:/subject/dashboard";
 	}
 
 }

@@ -6,17 +6,21 @@
 	<nav class="main-nav">
 		<div class="nav-links">
 			<a href="#" class="nav-item active">대시보드</a>
+
 			<!-- 강사용 메뉴 -->
-			<div class="instructor-menu">
+			<div class="instructor-menu" th:if="${member.role == 'INSTRUCTOR'}">
 				<a href="#" class="nav-item">강사 페이지 ▾</a>
 				<div class="submenu">
-					<a href="studentList.html" class="submenu-item">학생 리스트</a> <a
-						href="evaluation.html" class="submenu-item">평가 페이지</a>
+					<a th:href="@{/student/list}" class="submenu-item">학생 리스트</a>
+					<a th:href="@{/evaluation}" class="submenu-item">평가 페이지</a>
 				</div>
 			</div>
 		</div>
+
+		<!-- 사용자 정보 -->
 		<div class="user-info">
-			<span class="user-name">홍길동</span> <span class="user-role">강사</span>
+			<span class="user-name" th:text="${member.name}"></span>
+			<span class="user-role" th:text="${member.role.name() == 'INSTRUCTOR' ? '강사' : '학생'}"></span>
 		</div>
 	</nav>
 </header>
