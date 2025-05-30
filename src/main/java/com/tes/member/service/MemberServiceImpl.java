@@ -11,14 +11,13 @@ import com.tes.member.domain.repository.MemberRepository;
 import com.tes.member.model.request.LoginReqDTO;
 import com.tes.member.model.response.LoginResDTO;
 
-import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 
 /**
  * {@link MemberService} 인터페이스의 구현체로,
  * 사용자 관련 로직을 처리하는 서비스 클래스입니다.
  * 
- * @author 
+ * @author s
  * @since 1.0
  */
 @Service

@@ -11,6 +11,7 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 /**
  * 시스템에 등록된 사용자(학생 또는 강사)를 나타내는 JPA 엔티티입니다.
@@ -30,6 +31,7 @@ import lombok.Getter;
 @Table(name="member")
 @Getter
 @Builder
+@NoArgsConstructor
 @AllArgsConstructor 
 public class Member {
     /** 회원 고유 식별자 */

@@ -4,7 +4,7 @@ VALUES ('웹 프로그래밍 기초', '2025-06-10', '2025-07-05');
 
 -- 2. 사용자(member) – 강사
 INSERT INTO member (name, generation, phone, password, role)
-VALUES ('김재섭', 0, '010-8888-9999', '$2a$10$u.6YeYJGWpRYg8Y.lcCrzOdz1U.D3oV1PFAn9BBzvfK/ikZWLSP9G', 'INSTRUCTOR');
+VALUES ('김재섭', '0기', '010-8888-9999', '$2a$10$u.6YeYJGWpRYg8Y.lcCrzOdz1U.D3oV1PFAn9BBzvfK/ikZWLSP9G', 'INSTRUCTOR');
 
 -- 3. 사용자(member) – 학생
 INSERT INTO member (name, generation, phone, password, role)
