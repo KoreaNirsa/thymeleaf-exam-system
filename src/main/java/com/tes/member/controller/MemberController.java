@@ -56,7 +56,7 @@ public class MemberController {
      * @return 대시보드 페이지로의 리다이렉트 경로
      */
 	@PostMapping("/login")
-	public String doLogin(@ModelAttribute @Valid LoginReqDTO loginReqDTO, 
+	public String login(@ModelAttribute @Valid LoginReqDTO loginReqDTO, 
 							BindingResult bindingResult,
 							HttpSession session,
 							Model model) {
@@ -69,5 +69,11 @@ public class MemberController {
 		LoginResDTO response = loginService.login(loginReqDTO);
 		session.setAttribute("member", response);
 	    return "redirect:/subject/dashboard";
+	}
+	
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/";
 	}
 }
