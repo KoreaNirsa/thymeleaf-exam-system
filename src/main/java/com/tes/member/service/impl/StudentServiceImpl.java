@@ -39,27 +39,34 @@ public class StudentServiceImpl implements StudentService {
 	private final StudentRepository studentRepository;
 	
     /**
-     * 학생 목록을 페이징 처리하여 조회합니다.
-     * <p>
-     * 학생별 평균 점수를 기준으로 내림차순 정렬된 결과를 반환하며,
-     * 페이지 번호와 크기(Pageable)를 기반으로 한 페이징 처리 및 등수(rank)도 포함됩니다.
-     * </p>
-     *
-     * @param pageable 페이징 요청 정보 (페이지 번호, 페이지 크기 등)
-     * @return 평균 점수 기준 내림차순 정렬된 학생 리스트 페이지
+     * 기수별로 학생 목록을 조회하고, 각 기수 내에서 평균 점수 기준 등수를 계산한 뒤,
+     * 전체 기수는 최신순(내림차순), 각 기수 내에서는 점수 등수 기준으로 정렬하여 반환합니다.
+     * 
+	 * <p>
+	 * 데이터 조회는 native SQL 쿼리로 수행되며, 결과는 Object 배열 형태로 반환되고,
+	 * Java 로직을 통해 기수별 그룹화 및 등수 계산 후 {@link StudentListResDTO} 리스트로 변환됩니다.
+	 * </p>
+	 * 
+     * @param pageable 페이지 번호, 크기 등 페이징 정보
+     * @return 정렬 및 등수가 반영된 학생 리스트의 페이지 객체
      */
 	@Override
 	public Page<StudentListResDTO> getStudentPage(Pageable pageable) {
+		// DB에서 학생 목록 + 평균 점수를 페이징 조회 (Object[]로 구성된 결과)
 	    Page<Object[]> rawPage = studentRepository.findStudentListWithAvgScore(pageable);
 
-	    // List<Object[]> → Group by generation
+	    // 조회된 데이터를 기수(generation)를 기준으로 그룹화 (Map<String, List<Object[]>> 형태)
 	    Map<String, List<Object[]>> groupedByGeneration = rawPage.getContent().stream()
 	        .collect(Collectors.groupingBy(row -> (String) row[1]));
 
+	    // 최종 변환된 DTO 리스트를 담을 리스트
 	    List<StudentListResDTO> dtoList = new ArrayList<>();
 
+	    // 각 기수별로 등수를 부여
 	    groupedByGeneration.forEach((generation, rows) -> {
-	        AtomicInteger rank = new AtomicInteger(1);
+	        AtomicInteger rank = new AtomicInteger(1); // 기수별 등수 1부터 시작
+	        
+	        // 각 학생 데이터를 DTO로 변환하면서 등수를 추가
 	        rows.forEach(row -> {
 	            dtoList.add(new StudentListResDTO(
 	                ((Long) row[0]).longValue(),      // member_id
@@ -72,10 +79,12 @@ public class StudentServiceImpl implements StudentService {
 	        });
 	    });
 
-	    // 기수 내에서 등수는 맞지만 전체 페이지 기준 정렬 필요
-	    dtoList.sort(Comparator.comparing(StudentListResDTO::getGeneration).reversed()
-	        .thenComparing(StudentListResDTO::getRank)); // generation DESC, rank ASC
+		 // 모든 DTO를 기수 내 등수 기준으로 정렬 (기수 내 정렬은 위에서 했고, 여기선 전체 기준)
+		 // 기수(generation) 내림차순 정렬 → 동일 기수 내에서는 rank 오름차순 정렬
+	    dtoList.sort(Comparator.comparing(StudentListResDTO::getGeneration).reversed() // 최신 기수 먼저
+	        .thenComparing(StudentListResDTO::getRank));  // 기수 내 순위 오름차순
 
+	    // 페이징 객체(PageImpl)로 반환
 	    return new PageImpl<>(dtoList, pageable, rawPage.getTotalElements());
 	}
 }
