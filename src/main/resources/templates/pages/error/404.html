@@ -1,0 +1,11 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/base-layout}">
+	<th:block layout:fragment="pageHead">
+		<link rel="stylesheet" type="text/css" href="/css/404.css">
+	    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	</th:block>
+	<th:block layout:fragment="content">
+		<th:block th:replace="~{fragments/section/error/container :: 404Container}"></th:block>
+		<th:block th:replace="~{fragments/scripts/errorScripts :: 404ErrorScripts}"></th:block>
+	</th:block>
+</html>

@@ -63,7 +63,7 @@ public class MemberController {
 		
 	    if (bindingResult.hasErrors()) {
 	        model.addAttribute("errorMessage", "유효성 검증 실패");
-	        return "pages/login";
+	        return "redirect:/";
 	    }
 	    
 		LoginResDTO response = loginService.login(loginReqDTO);
