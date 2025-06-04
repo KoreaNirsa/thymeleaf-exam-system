@@ -10,7 +10,7 @@ CREATE TABLE subject (
 CREATE TABLE member (
   member_id BIGINT AUTO_INCREMENT PRIMARY KEY COMMENT '사용자 고유 ID',
   name VARCHAR(255) NOT NULL COMMENT '이름',
-  generation VARCHAR(50) COMMENT '기수 (강사의 경우 NULL 허용)',
+  generation NUMBER COMMENT '기수 (강사의 경우 NULL 허용)',
   phone VARCHAR(20) COMMENT '연락처',
   password VARCHAR(255) NOT NULL COMMENT '비밀번호 (암호화 저장)',
   role VARCHAR(20) NOT NULL COMMENT '역할 (STUDENT or INSTRUCTOR)'

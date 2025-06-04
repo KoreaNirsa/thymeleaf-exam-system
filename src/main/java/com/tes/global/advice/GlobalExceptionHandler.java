@@ -5,11 +5,10 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.servlet.NoHandlerFoundException;
 
 import com.tes.global.exception.UserException;
 import com.tes.member.model.request.LoginReqDTO;
-import com.tes.member.service.MemberServiceImpl;
+import com.tes.member.service.impl.MemberServiceImpl;
 
 /**
  * 전역 예외 처리 클래스

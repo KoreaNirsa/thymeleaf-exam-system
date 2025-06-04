@@ -1,4 +1,4 @@
-package com.tes.member.service;
+package com.tes.member.service.impl;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -10,6 +10,7 @@ import com.tes.member.domain.entity.Member;
 import com.tes.member.domain.repository.MemberRepository;
 import com.tes.member.model.request.LoginReqDTO;
 import com.tes.member.model.response.LoginResDTO;
+import com.tes.member.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
 

@@ -19,16 +19,5 @@ import com.tes.member.model.response.LoginResDTO;
  */
 public interface MemberService {
 	
-    /**
-     * 사용자의 로그인 요청을 처리합니다.
-     * <p>
-     * 기수, 이름, 비밀번호를 기반으로 사용자 인증을 수행하고,
-     * 인증에 성공하면 사용자 정보를 응답 DTO로 반환합니다.
-     * </p>
-     *
-     * @param loginReqDTO 로그인 요청 정보를 담은 DTO
-     * @return 로그인에 성공한 사용자 정보를 담은 DTO
-     * @throws com.tes.global.exception.UserException 로그인 실패 시 예외 발생
-     */
 	public LoginResDTO login(LoginReqDTO loginReqDTO);
 }

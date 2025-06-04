@@ -21,36 +21,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr onclick="location.href='studentDetail.html?id=1'" style="cursor: pointer;">
-                            <td>1</td>
-                            <td>23기</td>
-                            <td>김학생</td>
-                            <td>010-1234-5678</td>
-                            <td>95.5</td>
-                            <td>1</td>
-                            <td>
-                                <button class="detail-btn">상세보기</button>
-                            </td>
-                        </tr>
-                        <tr onclick="location.href='studentDetail.html?id=2'" style="cursor: pointer;">
-                            <td>2</td>
-                            <td>23기</td>
-                            <td>이학생</td>
-                            <td>010-2345-6789</td>
-                            <td>92.3</td>
-                            <td>2</td>
-                            <td>
-                                <button class="detail-btn">상세보기</button>
-                            </td>
-                        </tr>
-                        <tr onclick="location.href='studentDetail.html?id=3'" style="cursor: pointer;">
-                            <td>3</td>
-                            <td>23기</td>
-                            <td>박학생</td>
-                            <td>010-3456-7890</td>
-                            <td>88.7</td>
-                            <td>3</td>
-                            <td>
+                        <tr th:each="student, stat : ${students}">
+							<td th:text="${pageInfo.totalElements - (pageInfo.number * pageInfo.size + stat.index)}"></td>
+							<td th:text="${student.generation}">23기</td>
+							<td th:text="${student.name}">홍길동</td>
+							<td th:text="${student.phone}">010-0000-0000</td>
+							<td th:text="${student.avgScore}">95.2</td>
+							<td th:text="${student.rank}">1</td>
+							<td>
                                 <button class="detail-btn">상세보기</button>
                             </td>
                         </tr>

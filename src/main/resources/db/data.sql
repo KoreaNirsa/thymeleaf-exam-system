@@ -4,11 +4,19 @@ VALUES ('웹 프로그래밍 기초', '2025-06-10', '2025-07-05');
 
 -- 2. 사용자(member) – 강사
 INSERT INTO member (name, generation, phone, password, role)
-VALUES ('김재섭', '0기', '010-8888-9999', '$2a$10$u.6YeYJGWpRYg8Y.lcCrzOdz1U.D3oV1PFAn9BBzvfK/ikZWLSP9G', 'INSTRUCTOR');
+VALUES ('김재섭', 0, '010-8888-9999', '$2a$10$u.6YeYJGWpRYg8Y.lcCrzOdz1U.D3oV1PFAn9BBzvfK/ikZWLSP9G', 'INSTRUCTOR');
 
 -- 3. 사용자(member) – 학생
 INSERT INTO member (name, generation, phone, password, role)
-VALUES ('이은하', '15기', '010-2345-6789', '$2a$10$u.6YeYJGWpRYg8Y.lcCrzOdz1U.D3oV1PFAn9BBzvfK/ikZWLSP9G', 'STUDENT');
+VALUES ('이은하', 15, '010-2345-6789', '$2a$10$u.6YeYJGWpRYg8Y.lcCrzOdz1U.D3oV1PFAn9BBzvfK/ikZWLSP9G', 'STUDENT');
+INSERT INTO member (name, generation, phone, password, role)
+VALUES ('홍길동', 15, '010-1111-2222', '$2a$10$u.6YeYJGWpRYg8Y.lcCrzOdz1U.D3oV1PFAn9BBzvfK/ikZWLSP9G', 'STUDENT');
+INSERT INTO member (name, generation, phone, password, role)
+VALUES ('김철수', 15, '010-1234-5678', '$2a$10$u.6YeYJGWpRYg8Y.lcCrzOdz1U.D3oV1PFAn9BBzvfK/ikZWLSP9G', 'STUDENT');
+INSERT INTO member (name, generation, phone, password, role)
+VALUES ('세종대왕', 13, '010-7777-7777', '$2a$10$u.6YeYJGWpRYg8Y.lcCrzOdz1U.D3oV1PFAn9BBzvfK/ikZWLSP9G', 'STUDENT');
+INSERT INTO member (name, generation, phone, password, role)
+VALUES ('이순신', 14, '010-8888-8888', '$2a$10$u.6YeYJGWpRYg8Y.lcCrzOdz1U.D3oV1PFAn9BBzvfK/ikZWLSP9G', 'STUDENT');
 
 -- 4. 평가 상태(evaluation_status) – 과목 ID 1 기준
 -- "시작 대기", "평가 시작", "채점 진행중", "점수 확인"
