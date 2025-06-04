@@ -1,5 +1,6 @@
 # 🧪 평가 시스템 (Thymeleaf + Spring Boot)
 
+![Thymeleaf](https://img.shields.io/badge/view--engine-Thymeleaf-brightgreen?logo=thymeleaf)
 [![Java](https://img.shields.io/badge/Java-17-blue)](https://openjdk.org/projects/jdk/17/)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.4.5-brightgreen)](https://spring.io/projects/spring-boot)
 [![Build](https://img.shields.io/badge/Build-Gradle-5cb85c)](https://gradle.org/)
