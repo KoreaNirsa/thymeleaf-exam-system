@@ -3,7 +3,7 @@
         <div class="modal-content">
             <span class="close" onclick="closeAddModal()">&times;</span>
             <h2 class="section-title">학생 추가</h2>
-            <form id="addStudentForm" class="add-student-form">
+            <form action="/student/add" method="POST" class="add-student-form">
                 <div class="form-group">
                     <label for="generation">기수</label>
                     <input type="text" id="generation" name="generation" required placeholder="예) 23기">
@@ -14,7 +14,7 @@
                 </div>
                 <div class="form-group">
                     <label for="name">비밀번호</label>
-                    <input type="text" id="name" name="name" required placeholder="이름을 입력하세요">
+                    <input type="password" id="password" name="password" required placeholder="비밀번호를 입력하세요">
                 </div>
                 <div class="form-group">
                     <label for="phone">연락처</label>

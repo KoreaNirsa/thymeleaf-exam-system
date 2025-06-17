@@ -6,8 +6,12 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.tes.member.enums.MemberRole;
+import com.tes.member.model.request.StudentAddReqDTO;
 import com.tes.member.model.response.StudentListResDTO;
 import com.tes.member.service.StudentService;
 
@@ -53,6 +57,15 @@ public class StudentController {
 	    model.addAttribute("pageInfo", page);
 	    
 		return "pages/studentList";
+	}
+	
+	@PostMapping("/add")
+	public String addStudent(@ModelAttribute StudentAddReqDTO studentAddReqDTO) {
+		studentAddReqDTO.setRole(MemberRole.STUDENT);
+		
+		studentService.addStudent(studentAddReqDTO);
+		
+		return "redirect:/student/list";
 	}
 
 }

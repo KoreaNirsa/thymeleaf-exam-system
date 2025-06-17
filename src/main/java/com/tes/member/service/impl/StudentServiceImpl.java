@@ -10,9 +10,12 @@ import java.util.stream.Collectors;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.tes.member.domain.entity.Member;
 import com.tes.member.domain.repository.StudentRepository;
+import com.tes.member.model.request.StudentAddReqDTO;
 import com.tes.member.model.response.StudentListResDTO;
 import com.tes.member.service.StudentService;
 
@@ -37,6 +40,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class StudentServiceImpl implements StudentService {
 	private final StudentRepository studentRepository;
+	private final PasswordEncoder passwordEncoder;
 	
     /**
      * 기수별로 학생 목록을 조회하고, 각 기수 내에서 평균 점수 기준 등수를 계산한 뒤,
@@ -81,10 +85,29 @@ public class StudentServiceImpl implements StudentService {
 
 		 // 모든 DTO를 기수 내 등수 기준으로 정렬 (기수 내 정렬은 위에서 했고, 여기선 전체 기준)
 		 // 기수(generation) 내림차순 정렬 → 동일 기수 내에서는 rank 오름차순 정렬
-	    dtoList.sort(Comparator.comparing(StudentListResDTO::getGeneration).reversed() // 최신 기수 먼저
+	    dtoList.sort(Comparator.comparing(StudentListResDTO::getGeneration).reversed() // 기수를 int 변환
 	        .thenComparing(StudentListResDTO::getRank));  // 기수 내 순위 오름차순
-
+	    dtoList.sort(
+	    	    Comparator
+	    	        .comparingInt((StudentListResDTO dto) -> Integer.parseInt(dto.getGeneration()))
+	    	        .reversed() // 최신 기수 먼저
+	    	        .thenComparing(StudentListResDTO::getRank) // 같은 기수 내에서는 등수 오름차순
+	    	);
 	    // 페이징 객체(PageImpl)로 반환
 	    return new PageImpl<>(dtoList, pageable, rawPage.getTotalElements());
+	}
+	
+	public void addStudent(StudentAddReqDTO studentAddReqDTO) {
+		String encodePassword = passwordEncoder.encode(studentAddReqDTO.getPassword());
+		
+		Member member = Member.builder()
+						      .generation(studentAddReqDTO.getGeneration())
+						      .name(studentAddReqDTO.getName())
+						      .password(encodePassword)
+						      .phone(studentAddReqDTO.getPhone())
+						      .role(studentAddReqDTO.getRole())
+						      .build();
+		
+		studentRepository.save(member);
 	}
 }

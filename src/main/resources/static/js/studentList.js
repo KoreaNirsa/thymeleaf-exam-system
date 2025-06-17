@@ -16,9 +16,9 @@ window.onclick = (event) => {
     }
 }
 
-// 폼 제출 처리
+/*// 폼 제출 처리
 document.getElementById('addStudentForm').onsubmit = (e) => {
     e.preventDefault();
     // 여기에 폼 데이터 처리 로직 추가
     closeAddModal();
-}
+}*/

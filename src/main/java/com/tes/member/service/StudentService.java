@@ -3,6 +3,7 @@ package com.tes.member.service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import com.tes.member.model.request.StudentAddReqDTO;
 import com.tes.member.model.response.StudentListResDTO;
 
 /**
@@ -21,4 +22,6 @@ import com.tes.member.model.response.StudentListResDTO;
  */
 public interface StudentService {
 	public Page<StudentListResDTO> getStudentPage(Pageable pageable);
+
+	public void addStudent(StudentAddReqDTO studentAddReqDTO);
 }
