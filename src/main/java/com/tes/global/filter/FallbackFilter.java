@@ -1,5 +1,16 @@
 package com.tes.global.filter;
 
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.HandlerExecutionChain;
+import org.springframework.web.servlet.HandlerMapping;
+
+import com.tes.global.enums.WhitelistPath;
+
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -7,13 +18,6 @@ import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.web.servlet.HandlerExecutionChain;
-import org.springframework.web.servlet.HandlerMapping;
-
-import java.io.IOException;
-import java.util.List;
 
 /**
  * 존재하지 않는 URL 요청에 대해 404 상태 코드를 반환하는 전역 Fallback 필터입니다.
@@ -39,9 +43,9 @@ import java.util.List;
 @Component
 public class FallbackFilter implements Filter {
 
-    private static final List<String> STATIC_PATH_PREFIXES = List.of(
-            "/css", "/js", "/images", "/student", "/subject", "/member", "/evaluation", "/favicon.ico"
-    );
+	private static final List<String> WHITELIST = Arrays.stream(WhitelistPath.values())
+	        .map(WhitelistPath::getPath)
+	        .toList();
 
     @Autowired
     private List<HandlerMapping> handlerMappings;
@@ -56,7 +60,7 @@ public class FallbackFilter implements Filter {
         String uri = req.getRequestURI();
 
         // 1. 정적 경로는 필터링 없이 통과
-        for (String prefix : STATIC_PATH_PREFIXES) {
+        for (String prefix : WHITELIST) {
             if (uri.startsWith(prefix)) {
                 chain.doFilter(request, response);
                 return;
