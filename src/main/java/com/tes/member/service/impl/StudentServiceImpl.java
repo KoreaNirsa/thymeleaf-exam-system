@@ -15,7 +15,9 @@ import org.springframework.stereotype.Service;
 
 import com.tes.member.domain.entity.Member;
 import com.tes.member.domain.repository.StudentRepository;
+import com.tes.member.enums.MemberRole;
 import com.tes.member.model.request.StudentAddReqDTO;
+import com.tes.member.model.response.StudentDetailInfoResDTO;
 import com.tes.member.model.response.StudentListResDTO;
 import com.tes.member.service.StudentService;
 
@@ -60,14 +62,14 @@ public class StudentServiceImpl implements StudentService {
 	    Page<Object[]> rawPage = studentRepository.findStudentListWithAvgScore(pageable);
 
 	    // 조회된 데이터를 기수(generation)를 기준으로 그룹화 (Map<String, List<Object[]>> 형태)
-	    Map<String, List<Object[]>> groupedByGeneration = rawPage.getContent().stream()
+	    Map<String, List<Object[]>> groupByGeneration = rawPage.getContent().stream()
 	        .collect(Collectors.groupingBy(row -> (String) row[1]));
 
 	    // 최종 변환된 DTO 리스트를 담을 리스트
 	    List<StudentListResDTO> dtoList = new ArrayList<>();
 
 	    // 각 기수별로 등수를 부여
-	    groupedByGeneration.forEach((generation, rows) -> {
+	    groupByGeneration.forEach((generation, rows) -> {
 	        AtomicInteger rank = new AtomicInteger(1); // 기수별 등수 1부터 시작
 	        
 	        // 각 학생 데이터를 DTO로 변환하면서 등수를 추가
@@ -85,11 +87,9 @@ public class StudentServiceImpl implements StudentService {
 
 		 // 모든 DTO를 기수 내 등수 기준으로 정렬 (기수 내 정렬은 위에서 했고, 여기선 전체 기준)
 		 // 기수(generation) 내림차순 정렬 → 동일 기수 내에서는 rank 오름차순 정렬
-	    dtoList.sort(Comparator.comparing(StudentListResDTO::getGeneration).reversed() // 기수를 int 변환
-	        .thenComparing(StudentListResDTO::getRank));  // 기수 내 순위 오름차순
 	    dtoList.sort(
 	    	    Comparator
-	    	        .comparingInt((StudentListResDTO dto) -> Integer.parseInt(dto.getGeneration()))
+	    	        .comparingInt((StudentListResDTO dto) -> Integer.parseInt(dto.getGeneration())) // 기수를 int 변환
 	    	        .reversed() // 최신 기수 먼저
 	    	        .thenComparing(StudentListResDTO::getRank) // 같은 기수 내에서는 등수 오름차순
 	    	);
@@ -125,5 +125,18 @@ public class StudentServiceImpl implements StudentService {
 						      .build();
 		
 		studentRepository.save(member);
+	}
+	
+	public StudentDetailInfoResDTO getStudentDetail(long memberId, double avg, int rank) {
+		Member member = studentRepository.findByMemberId(memberId)
+										  .orElseThrow(() -> new RuntimeException("사용자를 찾을 수 없습니다."));
+		
+        return StudentDetailInfoResDTO.builder()
+        							  .memberId(memberId)
+        							  .name(member.getName())
+        							  .phone(member.getPhone())
+        							  .avgScore(avg)
+        							  .rank(rank)
+        							  .build();
 	}
 }

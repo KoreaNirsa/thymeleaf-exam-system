@@ -7,11 +7,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.tes.member.enums.MemberRole;
 import com.tes.member.model.request.StudentAddReqDTO;
+import com.tes.member.model.response.StudentDetailInfoResDTO;
 import com.tes.member.model.response.StudentListResDTO;
 import com.tes.member.service.StudentService;
 
@@ -82,5 +85,17 @@ public class StudentController {
 		studentService.addStudent(studentAddReqDTO);
 		
 		return "redirect:/student";
+	}
+	
+	@GetMapping("/{memberId}")
+	public String detail(@PathVariable("memberId") long memberId,
+						 @RequestParam("avg") double avg,
+						 @RequestParam("rank") int rank,
+						 Model model) {
+		StudentDetailInfoResDTO detailInfo = studentService.getStudentDetail(memberId, avg, rank);
+		
+		model.addAttribute("detailInfo", detailInfo);
+		
+		return "pages/studentDetail";
 	}
 }

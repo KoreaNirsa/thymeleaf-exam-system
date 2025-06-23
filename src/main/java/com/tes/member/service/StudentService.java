@@ -4,6 +4,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.tes.member.model.request.StudentAddReqDTO;
+import com.tes.member.model.response.StudentDetailInfoResDTO;
 import com.tes.member.model.response.StudentListResDTO;
 
 /**
@@ -24,4 +25,5 @@ public interface StudentService {
 	public Page<StudentListResDTO> getStudentPage(Pageable pageable);
 
 	public void addStudent(StudentAddReqDTO studentAddReqDTO);
+	public StudentDetailInfoResDTO getStudentDetail(long memberId, double avg, int rank);
 }

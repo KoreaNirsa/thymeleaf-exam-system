@@ -29,7 +29,7 @@
 							<td th:text="${student.avgScore}">95.2</td>
 							<td th:text="${student.rank}">1</td>
 							<td>
-                                <button class="detail-btn">상세보기</button>
+                                <button class="detail-btn" th:onclick="|location.href='/student/${student.memberId}?avg=${student.avgScore}&rank=${student.rank}'|">상세보기</button>
                             </td>
                         </tr>
                     </tbody>
@@ -46,16 +46,16 @@
 			<div class="student-info-card">
 				<div class="info-row">
 					<div class="info-item">
-						<label>이름</label> <span>김학생</span>
+						<label>이름</label> <span th:text="${detailInfo.name}"></span>
 					</div>
 					<div class="info-item">
-						<label>연락처</label> <span>010-1234-5678</span>
+						<label>연락처</label> <span th:text="${detailInfo.phone}"></span>
 					</div>
 					<div class="info-item">
-						<label>평균 점수</label> <span class="score">95.5</span>
+						<label>평균 점수</label> <span class="score" th:text="${detailInfo.avgScore}"></span>
 					</div>
 					<div class="info-item">
-						<label>등수</label> <span class="rank">1</span>
+						<label>등수</label> <span class="rank" th:text="${detailInfo.rank}"></span>
 					</div>
 					<div class="info-item">
 						<button class="password-change-btn" onclick="openPasswordModal()">

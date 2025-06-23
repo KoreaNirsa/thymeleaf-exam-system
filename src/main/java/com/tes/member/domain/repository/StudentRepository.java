@@ -1,5 +1,7 @@
 package com.tes.member.domain.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -67,4 +69,7 @@ public interface StudentRepository extends JpaRepository<Member, Long> {
 		    nativeQuery = true
 		)
     Page<Object[]> findStudentListWithAvgScore(Pageable pageable);
+    
+    Optional<Member> findByMemberId(long memberId);
+
 }
