@@ -60,7 +60,6 @@ public class MemberController {
 							BindingResult bindingResult,
 							HttpSession session,
 							Model model) {
-		
 	    if (bindingResult.hasErrors()) {
 	        model.addAttribute("errorMessage", "유효성 검증 실패");
 	        return "redirect:/";
@@ -68,7 +67,7 @@ public class MemberController {
 	    
 		LoginResDTO response = loginService.login(loginReqDTO);
 		session.setAttribute("member", response);
-	    return "redirect:/subject/dashboard";
+	    return "redirect:/subject";
 	}
 	
 	@GetMapping("/logout")

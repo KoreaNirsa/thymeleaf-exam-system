@@ -37,7 +37,7 @@ public class SubjectController {
      * @param member 세션에 저장된 로그인 사용자 정보
      * @return 대시보드 템플릿 경로 ("pages/dashboard")
      */
-	@GetMapping("/dashboard")
+	@GetMapping
 	public String doDashboard(Model model, @SessionAttribute("member") LoginResDTO member) {
 	    Long memberId = member.getId();
 
