@@ -49,7 +49,7 @@ public class StudentController {
 	 * @param model 뷰에 데이터를 전달할 Spring MVC 모델
 	 * @return 학생 리스트 페이지 템플릿 경로
 	 */
-	@GetMapping("/list")
+	@GetMapping
 	public String list(@PageableDefault(size = 10) Pageable pageable, Model model) {
 	    Page<StudentListResDTO> page = studentService.getStudentPage(pageable);
 	    
@@ -59,13 +59,28 @@ public class StudentController {
 		return "pages/studentList";
 	}
 	
-	@PostMapping("/add")
+    /**
+     * 새로운 학생을 등록합니다.
+     * <p>
+     * 전달받은 {@link StudentAddReqDTO} 객체를 기반으로 학생 정보를 저장하며,
+     * 저장 후에는 학생 목록 페이지로 리다이렉트됩니다.
+     * </p>
+     *
+     * <ul>
+     *   <li>{@code role} 값은 {@link MemberRole#STUDENT}로 강제 설정됩니다.</li>
+     *   <li>학생 등록 처리는 {@link com.example.service.StudentService#addStudent(StudentAddReqDTO)}에 위임됩니다.</li>
+     *   <li>정상 등록 후 {@code /student/list} 페이지로 리다이렉트됩니다.</li>
+     * </ul>
+     *
+     * @param studentAddReqDTO 등록할 학생 정보 요청 DTO
+     * @return 등록 후 학생 목록 페이지로의 리다이렉트 경로
+     */
+	@PostMapping
 	public String addStudent(@ModelAttribute StudentAddReqDTO studentAddReqDTO) {
 		studentAddReqDTO.setRole(MemberRole.STUDENT);
 		
 		studentService.addStudent(studentAddReqDTO);
 		
-		return "redirect:/student/list";
+		return "redirect:/student";
 	}
-
 }

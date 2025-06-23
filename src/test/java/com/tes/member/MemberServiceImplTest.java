@@ -9,13 +9,11 @@ import static org.mockito.Mockito.when;
 
 import java.util.Optional;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -24,7 +22,7 @@ import com.tes.member.domain.entity.Member;
 import com.tes.member.domain.repository.MemberRepository;
 import com.tes.member.model.request.LoginReqDTO;
 import com.tes.member.model.response.LoginResDTO;
-import com.tes.member.service.MemberServiceImpl;
+import com.tes.member.service.impl.MemberServiceImpl;
 
 /**
  * {@link com.tes.member.service.MemberServiceImpl} 클래스의 단위 테스트를 수행합니다.

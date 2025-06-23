@@ -97,6 +97,22 @@ public class StudentServiceImpl implements StudentService {
 	    return new PageImpl<>(dtoList, pageable, rawPage.getTotalElements());
 	}
 	
+    /**
+     * 전달받은 {@link StudentAddReqDTO}를 기반으로 새로운 학생 회원을 등록합니다.
+     *
+     * <p>
+     * 비밀번호는 {@link PasswordEncoder}를 통해 암호화되며,
+     * {@link MemberRole#STUDENT} 역할을 가진 {@link Member} 엔티티로 변환 후 저장소에 저장됩니다.
+     * </p>
+     *
+     * <ul>
+     *   <li>DTO의 필드: 기수, 이름, 연락처, 비밀번호, 역할 정보를 포함합니다.</li>
+     *   <li>비밀번호는 DB 저장 전에 반드시 암호화되어 저장됩니다.</li>
+     *   <li>{@link com.tes.member.domain.repository.StudentRepository#save(Object)}를 통해 저장됩니다.</li>
+     * </ul>
+     *
+     * @param studentAddReqDTO 등록할 학생 정보 DTO
+     */
 	public void addStudent(StudentAddReqDTO studentAddReqDTO) {
 		String encodePassword = passwordEncoder.encode(studentAddReqDTO.getPassword());
 		
