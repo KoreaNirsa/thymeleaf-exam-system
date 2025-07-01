@@ -16,5 +16,5 @@ public class StudentDetailInfoResDTO {
 	private double avgScore;
 	private int rank;
 	
-	private List<SubjectScoreResponseDTO> subjectScores;
+	private List<SubjectScoreResDTO> subjectScores;
 }

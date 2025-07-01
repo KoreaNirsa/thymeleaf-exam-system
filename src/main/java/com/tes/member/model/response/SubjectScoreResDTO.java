@@ -7,7 +7,7 @@ import lombok.ToString;
 @Getter
 @Builder
 @ToString
-public class SubjectScoreResponseDTO {
+public class SubjectScoreResDTO {
     private String subjectName;
     private Integer firstScore;
     private Integer secondScore;

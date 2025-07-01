@@ -19,7 +19,7 @@ import com.tes.member.enums.MemberRole;
 import com.tes.member.model.request.StudentAddReqDTO;
 import com.tes.member.model.response.StudentDetailInfoResDTO;
 import com.tes.member.model.response.StudentListResDTO;
-import com.tes.member.model.response.SubjectScoreResponseDTO;
+import com.tes.member.model.response.SubjectScoreResDTO;
 import com.tes.member.service.StudentService;
 import com.tes.subject.domain.entity.StudentExamSubmission;
 import com.tes.subject.domain.entity.Subject;
@@ -134,7 +134,7 @@ public class StudentServiceImpl implements StudentService {
 	    Map<Subject, List<StudentExamSubmission>> grouped = submissions.stream()
 	        .collect(Collectors.groupingBy(StudentExamSubmission::getSubject));
 
-	    List<SubjectScoreResponseDTO> subjectScores = grouped.entrySet().stream()
+	    List<SubjectScoreResDTO> subjectScores = grouped.entrySet().stream()
 	        .map(entry -> {
 	            Subject subject = entry.getKey();
 	            List<StudentExamSubmission> exams = entry.getValue();
@@ -154,7 +154,7 @@ public class StudentServiceImpl implements StudentService {
 	                }
 	            }
 
-	            return SubjectScoreResponseDTO.builder()
+	            return SubjectScoreResDTO.builder()
 	                .subjectName(subject.getName())
 	                .firstScore(firstScore)
 	                .secondScore(secondScore)
