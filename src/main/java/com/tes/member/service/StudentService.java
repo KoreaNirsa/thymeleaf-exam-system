@@ -27,5 +27,5 @@ public interface StudentService {
 	public void addStudent(StudentAddReqDTO studentAddReqDTO);
 	public StudentDetailInfoResDTO getStudentDetail(long memberId, double avg, int rank);
 
-	public void changePassword(long memberId, String newPassword, String confirmPassword);
+	public void changePassword(long memberId, String newPassword, String confirmPassword, long sessionMemberId);
 }

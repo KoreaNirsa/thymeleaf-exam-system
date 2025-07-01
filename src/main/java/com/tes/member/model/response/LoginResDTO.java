@@ -1,11 +1,10 @@
 package com.tes.member.model.response;
 
+import java.io.Serializable;
+
 import com.tes.member.domain.entity.Member;
 import com.tes.member.enums.MemberRole;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -25,8 +24,10 @@ import lombok.Getter;
 @Getter
 @Builder
 @AllArgsConstructor
-public class LoginResDTO {
-    /** 사용자 고유 식별자 */
+public class LoginResDTO implements Serializable {
+	private static final long serialVersionUID = 202507012207001L;
+
+	/** 사용자 고유 식별자 */
     private Long memberId;
 
     /** 사용자 이름 */

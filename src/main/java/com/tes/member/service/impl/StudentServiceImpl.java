@@ -204,9 +204,14 @@ public class StudentServiceImpl implements StudentService {
 	}
 	
 	@Transactional
-	public void changePassword(long memberId, String newPassword, String confirmPassword) {
+	public void changePassword(long memberId, String newPassword, String confirmPassword, long sessionMemberId) {
+	
+	    if (sessionMemberId != memberId) {
+	        throw new UserException("다른 사용자는 요청 불가");
+	    }
+        
 	    if (!Objects.equals(newPassword, confirmPassword)) {
-			throw new UserException("비밀번호가 일치하지 않습니다.", "pages/login");
+			throw new UserException("비밀번호 불일치");
 	    }
 	    
         Member member = memberRepository.findByMemberId(memberId)

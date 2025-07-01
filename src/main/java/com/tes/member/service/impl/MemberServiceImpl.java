@@ -50,12 +50,12 @@ public class MemberServiceImpl implements MemberService {
 		Member user = userRepository.findByGenerationAndName(loginReqDTO.getGeneration(), loginReqDTO.getName())
 				.orElseThrow(() -> {
 					logger.warn("존재하지 않는 사용자: 기수={}, 이름={}", loginReqDTO.getGeneration(), loginReqDTO.getName());
-					return new UserException("아이디가 존재하지 않습니다.", "pages/login");
+					return new UserException("아이디가 존재하지 않습니다.");
 				});
 
 		if (!passwordEncoder.matches(loginReqDTO.getPassword(), user.getPassword())) {
 			logger.warn("비밀번호 불일치: 사용자 ID = {}", user.getMemberId());
-			throw new UserException("비밀번호가 틀렸습니다.", "pages/login");
+			throw new UserException("비밀번호가 틀렸습니다.");
 		}
 
 		return LoginResDTO.from(user);

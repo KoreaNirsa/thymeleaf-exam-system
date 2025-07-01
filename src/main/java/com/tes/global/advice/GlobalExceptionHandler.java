@@ -26,7 +26,7 @@ public class GlobalExceptionHandler {
     	logger.warn("UserException 발생: {}", e.getMessage());
     	model.addAttribute("loginReqDTO", new LoginReqDTO());
         model.addAttribute("errorMessage", e.getMessage());
-        return e.getRedirectPath(); // e.g., "pages/login"
+        return "pages/login";
     }
 
     /**
@@ -36,6 +36,6 @@ public class GlobalExceptionHandler {
     public String handleRuntimeException(RuntimeException e, Model model) {
     	logger.error("알 수 없는 예외 발생", e);
         model.addAttribute("errorMessage", "알 수 없는 오류가 발생했습니다.");
-        return "error/error"; // 기본 오류 페이지
+        return "error/error"; 
     }
 }
