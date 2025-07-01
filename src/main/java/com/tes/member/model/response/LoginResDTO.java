@@ -27,7 +27,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public class LoginResDTO {
     /** 사용자 고유 식별자 */
-    private Long id;
+    private Long memberId;
 
     /** 사용자 이름 */
     private String name;
@@ -43,7 +43,7 @@ public class LoginResDTO {
      */
     public static LoginResDTO from(Member user) {
         return LoginResDTO.builder()
-                .id(user.getMemberId())
+                .memberId(user.getMemberId())
                 .name(user.getName())
                 .role(user.getRole())
                 .build();

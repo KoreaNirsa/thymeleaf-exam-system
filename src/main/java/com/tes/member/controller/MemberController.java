@@ -1,5 +1,8 @@
 package com.tes.member.controller;
 
+import java.util.stream.Collectors;
+
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -61,7 +64,11 @@ public class MemberController {
 							HttpSession session,
 							Model model) {
 	    if (bindingResult.hasErrors()) {
-	        model.addAttribute("errorMessage", "유효성 검증 실패");
+		    String errorMsg = bindingResult.getFieldErrors().stream()
+		            .map(DefaultMessageSourceResolvable::getDefaultMessage)
+		            .collect(Collectors.joining(", "));
+		    
+	        model.addAttribute("errorMessage", "유효성 검증 실패 : " + errorMsg);
 	        return "redirect:/";
 	    }
 	    

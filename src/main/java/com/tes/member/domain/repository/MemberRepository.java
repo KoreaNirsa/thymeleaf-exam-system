@@ -26,4 +26,8 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
      * @return 해당 기수와 이름을 가진 회원이 존재할 경우 {@link Optional}에 래핑된 {@link Member} 객체
      */
     Optional<Member> findByGenerationAndName(String generation, String name);
+
+	Optional<Member> findByMemberId(long memberId);
+
+	void save(String encodedPassword);
 }

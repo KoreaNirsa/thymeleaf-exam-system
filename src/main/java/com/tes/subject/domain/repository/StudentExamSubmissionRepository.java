@@ -49,5 +49,5 @@ public interface StudentExamSubmissionRepository extends JpaRepository<StudentEx
 	 * @see com.tes.evaluation.domain.entity.StudentExamSubmission
 	 * @since 1.0
 	 */
-    List<StudentExamSubmission> findByMember_MemberId(Long memberId);
+    List<StudentExamSubmission> findByMember_MemberId(long memberId);
 }

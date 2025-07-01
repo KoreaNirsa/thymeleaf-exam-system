@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
@@ -12,8 +13,11 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.tes.global.exception.UserException;
 import com.tes.member.domain.entity.Member;
+import com.tes.member.domain.repository.MemberRepository;
 import com.tes.member.domain.repository.StudentRepository;
 import com.tes.member.enums.MemberRole;
 import com.tes.member.model.request.StudentAddReqDTO;
@@ -47,6 +51,7 @@ import lombok.RequiredArgsConstructor;
 public class StudentServiceImpl implements StudentService {
 	private final StudentExamSubmissionRepository studentExamSubmissionRepository;
 	private final StudentRepository studentRepository;
+	private final MemberRepository memberRepository;
 	private final PasswordEncoder passwordEncoder;
 	
     /**
@@ -196,5 +201,18 @@ public class StudentServiceImpl implements StudentService {
 	        .rank(rank)
 	        .subjectScores(subjectScores)
 	        .build();
+	}
+	
+	@Transactional
+	public void changePassword(long memberId, String newPassword, String confirmPassword) {
+	    if (!Objects.equals(newPassword, confirmPassword)) {
+			throw new UserException("비밀번호가 일치하지 않습니다.", "pages/login");
+	    }
+	    
+        Member member = memberRepository.findByMemberId(memberId)
+                .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 존재하지 않습니다."));
+		
+        String encodedPassword = passwordEncoder.encode(newPassword);
+        member.changePassword(encodedPassword);
 	}
 }

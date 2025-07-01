@@ -55,4 +55,8 @@ public class Member {
     /** 사용자 역할 (STUDENT or INSTRUCTOR) */
     @Enumerated(EnumType.STRING)
     private MemberRole role;
+    
+    public void changePassword(String encodedPassword) {
+        this.password = encodedPassword;
+    }
 }

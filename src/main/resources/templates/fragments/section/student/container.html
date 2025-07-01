@@ -58,7 +58,7 @@
 						<label>등수</label> <span class="rank" th:text="${detailInfo.rank}"></span>
 					</div>
 					<div class="info-item">
-						<button class="password-change-btn" onclick="openPasswordModal()">
+						<button class="password-change-btn"  th:data-member-id="${detailInfo.memberId}" onclick="openPasswordModal(this.dataset.memberId)">
 							비밀번호 수정</button>
 					</div>
 				</div>

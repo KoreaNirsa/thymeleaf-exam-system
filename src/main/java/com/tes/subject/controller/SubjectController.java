@@ -39,7 +39,7 @@ public class SubjectController {
      */
 	@GetMapping
 	public String doDashboard(Model model, @SessionAttribute("member") LoginResDTO member) {
-	    Long memberId = member.getId();
+	    Long memberId = member.getMemberId();
 
 		List<DashboardResDTO> subjectList = dashboardService.getDashboardData(memberId);
         model.addAttribute("subjects", subjectList);
