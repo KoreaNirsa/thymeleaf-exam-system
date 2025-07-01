@@ -1,5 +1,7 @@
 package com.tes.member.model.response;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,4 +15,6 @@ public class StudentDetailInfoResDTO {
 	private String phone;
 	private double avgScore;
 	private int rank;
+	
+	private List<SubjectScoreResponseDTO> subjectScores;
 }

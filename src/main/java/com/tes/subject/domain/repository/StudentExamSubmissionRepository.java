@@ -1,5 +1,6 @@
 package com.tes.subject.domain.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -33,4 +34,6 @@ public interface StudentExamSubmissionRepository extends JpaRepository<StudentEx
      * @return 해당 조건에 해당하는 시험 제출 엔티티(Optional)
      */
 	Optional<StudentExamSubmission> findByMember_MemberIdAndSubject_SubjectIdAndRound(Long memberId, Long subjectId, int round);
+	
+    List<StudentExamSubmission> findByMember_MemberId(Long memberId);
 }

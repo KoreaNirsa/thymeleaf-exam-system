@@ -19,7 +19,11 @@ import com.tes.member.enums.MemberRole;
 import com.tes.member.model.request.StudentAddReqDTO;
 import com.tes.member.model.response.StudentDetailInfoResDTO;
 import com.tes.member.model.response.StudentListResDTO;
+import com.tes.member.model.response.SubjectScoreResponseDTO;
 import com.tes.member.service.StudentService;
+import com.tes.subject.domain.entity.StudentExamSubmission;
+import com.tes.subject.domain.entity.Subject;
+import com.tes.subject.domain.repository.StudentExamSubmissionRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -41,6 +45,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class StudentServiceImpl implements StudentService {
+	private final StudentExamSubmissionRepository studentExamSubmissionRepository;
 	private final StudentRepository studentRepository;
 	private final PasswordEncoder passwordEncoder;
 	
@@ -128,15 +133,52 @@ public class StudentServiceImpl implements StudentService {
 	}
 	
 	public StudentDetailInfoResDTO getStudentDetail(long memberId, double avg, int rank) {
-		Member member = studentRepository.findByMemberId(memberId)
-										  .orElseThrow(() -> new RuntimeException("사용자를 찾을 수 없습니다."));
-		
-        return StudentDetailInfoResDTO.builder()
-        							  .memberId(memberId)
-        							  .name(member.getName())
-        							  .phone(member.getPhone())
-        							  .avgScore(avg)
-        							  .rank(rank)
-        							  .build();
+	    Member member = studentRepository.findByMemberId(memberId)
+	        .orElseThrow(() -> new RuntimeException("사용자를 찾을 수 없습니다."));
+
+	    List<StudentExamSubmission> submissions = studentExamSubmissionRepository.findByMember_MemberId(memberId);
+
+	    // 과목별로 묶기
+	    Map<Subject, List<StudentExamSubmission>> grouped = submissions.stream()
+	        .collect(Collectors.groupingBy(StudentExamSubmission::getSubject));
+
+	    List<SubjectScoreResponseDTO> subjectScores = grouped.entrySet().stream()
+	        .map(entry -> {
+	            Subject subject = entry.getKey();
+	            List<StudentExamSubmission> exams = entry.getValue();
+
+	            Integer firstScore = null;
+	            Integer secondScore = null;
+	            String firstFeedback = null;
+	            String secondFeedback = null;
+
+	            for (StudentExamSubmission s : exams) {
+	                if (s.getRound() == 1) {
+	                    firstScore = s.getScore();
+	                    firstFeedback = s.getFeedback();
+	                } else if (s.getRound() == 2) {
+	                    secondScore = s.getScore();
+	                    secondFeedback = s.getFeedback();
+	                }
+	            }
+
+	            return SubjectScoreResponseDTO.builder()
+	                .subjectName(subject.getName())
+	                .firstScore(firstScore)
+	                .secondScore(secondScore)
+	                .firstFeedback(firstFeedback)
+	                .secondFeedback(secondFeedback)
+	                .build();
+	        })
+	        .toList();
+
+	    return StudentDetailInfoResDTO.builder()
+	        .memberId(memberId)
+	        .name(member.getName())
+	        .phone(member.getPhone())
+	        .avgScore(avg)
+	        .rank(rank)
+	        .subjectScores(subjectScores)
+	        .build();
 	}
 }

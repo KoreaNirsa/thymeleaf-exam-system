@@ -93,7 +93,6 @@ public class StudentController {
 						 @RequestParam("rank") int rank,
 						 Model model) {
 		StudentDetailInfoResDTO detailInfo = studentService.getStudentDetail(memberId, avg, rank);
-		
 		model.addAttribute("detailInfo", detailInfo);
 		
 		return "pages/studentDetail";

@@ -77,95 +77,28 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>JavaScript 기초</td>
-							<td>95</td>
-							<td>98</td>
+						<tr th:each="subject, stat : ${detailInfo.subjectScores}">
+							<td th:text="${subject.subjectName}"></td>
+							<td th:text="${subject.firstScore != null ? subject.firstScore : '0'}"></td>
+							<td th:text="${subject.secondScore != null ? subject.secondScore : '0'}"></td>
 							<td>
 								<button class="feedback-btn"
-									onclick="openFeedbackModal('JavaScript 기초')">피드백 확인</button>
+										  type="button"
+										  th:data-subject="${subject.subjectName}"
+										  th:data-feedback="${subject.secondFeedback != null ? subject.secondFeedback : subject.firstFeedback}"
+										  onclick="openFeedbackModal(this.dataset.subject, this.dataset.feedback)">
+									피드백 확인
+								</button>
 							</td>
 							<td>
 								<button class="edit-btn"
-									onclick="openScoreModal('JavaScript 기초')">점수 수정</button>
-							</td>
-						</tr>
-						<tr>
-							<td>React 심화</td>
-							<td>92</td>
-							<td>94</td>
-							<td>
-								<button class="feedback-btn"
-									onclick="openFeedbackModal('React 심화')">피드백 확인</button>
-							</td>
-							<td>
-								<button class="edit-btn" onclick="openScoreModal('React 심화')">점수
-									수정</button>
-							</td>
-						</tr>
-						<tr>
-							<td>React 심화</td>
-							<td>92</td>
-							<td>94</td>
-							<td>
-								<button class="feedback-btn"
-									onclick="openFeedbackModal('React 심화')">피드백 확인</button>
-							</td>
-							<td>
-								<button class="edit-btn" onclick="openScoreModal('React 심화')">점수
-									수정</button>
-							</td>
-						</tr>
-						<tr>
-							<td>React 심화</td>
-							<td>92</td>
-							<td>94</td>
-							<td>
-								<button class="feedback-btn"
-									onclick="openFeedbackModal('React 심화')">피드백 확인</button>
-							</td>
-							<td>
-								<button class="edit-btn" onclick="openScoreModal('React 심화')">점수
-									수정</button>
-							</td>
-						</tr>
-						<tr>
-							<td>React 심화</td>
-							<td>92</td>
-							<td>94</td>
-							<td>
-								<button class="feedback-btn"
-									onclick="openFeedbackModal('React 심화')">피드백 확인</button>
-							</td>
-							<td>
-								<button class="edit-btn" onclick="openScoreModal('React 심화')">점수
-									수정</button>
-							</td>
-						</tr>
-						<tr>
-							<td>React 심화</td>
-							<td>92</td>
-							<td>94</td>
-							<td>
-								<button class="feedback-btn"
-									onclick="openFeedbackModal('React 심화')">피드백 확인</button>
-							</td>
-							<td>
-								<button class="edit-btn" onclick="openScoreModal('React 심화')">점수
-									수정</button>
-							</td>
-						</tr>
-						<tr>
-							<td>React 심화</td>
-							<td>92</td>
-							<td>94</td>
-							<td>
-								<button class="feedback-btn"
-									onclick="openFeedbackModal('React 심화')">피드백 확인</button>
-							</td>
-							<td>
-								<button class="edit-btn" onclick="openScoreModal('React 심화')">점수
-									수정</button>
+										type="button"
+										th:data-subject="${subject.subjectName}"
+										th:data-first-score="${subject.firstScore != null ? subject.firstScore : 0}"
+										th:data-second-score="${subject.secondScore != null ? subject.secondScore : '0'}"
+										onclick="openScoreModal(this.dataset.subject, this.dataset.firstScore, this.dataset.secondScore)">
+									점수 수정
+								</button>
 							</td>
 						</tr>
 					</tbody>

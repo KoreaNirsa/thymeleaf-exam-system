@@ -31,9 +31,14 @@ passwordForm.onsubmit = (e) => {
 // 점수 수정 모달
 const scoreModal = document.getElementById('scoreModal');
 const scoreForm = document.getElementById('scoreForm');
+const score1 = document.getElementById('score1');
+const score2 = document.getElementById('score2');
 
-function openScoreModal(subject) {
-    document.getElementById('subjectName').value = subject;
+function openScoreModal(subjectName, firstScore, secondScore) {
+	console.log(subjectName, firstScore, secondScore)
+    document.getElementById('subjectName').value = subjectName;
+	score1.value = firstScore;
+	score2.value = secondScore;
     scoreModal.style.display = "block";
 }
 
@@ -53,8 +58,9 @@ const feedbackForm = document.getElementById('feedbackForm');
 const feedbackContent = document.getElementById('feedbackContent');
 const currentChar = document.getElementById('currentChar');
 
-function openFeedbackModal(subject) {
-    document.getElementById('feedbackSubject').value = subject;
+function openFeedbackModal(subjectName, feedback) {
+    document.getElementById('feedbackSubject').value = subjectName;
+    feedbackContent.value = feedback;
     feedbackModal.style.display = "block";
 }
 
