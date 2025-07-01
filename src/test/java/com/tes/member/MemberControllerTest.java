@@ -62,7 +62,7 @@ class MemberControllerTest {
         String password = "Password1!";
 
         LoginResDTO loginResDTO = LoginResDTO.builder()
-                .id(1L)
+                .memberId(1L)
                 .name(name)
                 .role(MemberRole.STUDENT)
                 .build();
@@ -85,7 +85,7 @@ class MemberControllerTest {
         Object memberAttr = session.getAttribute("member");
         assert memberAttr instanceof LoginResDTO;
         LoginResDTO savedMember = (LoginResDTO) memberAttr;
-        assert savedMember.getId() == 1;
+        assert savedMember.getMemberId() == 1;
         assert savedMember.getName().equals(name);
         assert savedMember.getRole() == MemberRole.STUDENT;
     }
