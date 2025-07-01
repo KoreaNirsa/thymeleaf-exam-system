@@ -125,6 +125,30 @@ public class StudentServiceImpl implements StudentService {
 		studentRepository.save(member);
 	}
 	
+	/**
+	 * 주어진 학생 ID를 기반으로 학생의 상세 정보와 과목별 평가 점수 및 피드백 목록을 조회합니다.
+	 *
+	 * <p>
+	 * 이 메서드는 {@link Member} 엔티티를 조회하여 이름, 연락처 등의 기본 정보를 가져오고,
+	 * {@link StudentExamSubmission} 엔티티를 통해 과목별 1차/2차 점수와 피드백을 수집합니다.
+	 * 과목별로 평가 데이터를 그룹핑하여 {@link SubjectScoreResDTO}로 변환한 후,
+	 * {@link StudentDetailInfoResDTO}에 포함시켜 응답 객체로 반환합니다.
+	 * </p>
+	 *
+	 * @param memberId 조회할 학생의 고유 ID
+	 * @param avg 학생의 전체 평균 점수
+	 * @param rank 학생의 반 내 등수
+	 * @return 학생의 기본 정보와 과목별 점수/피드백을 포함한 상세 응답 DTO
+	 *
+	 * @throws RuntimeException 해당 ID의 학생(Member)을 찾을 수 없는 경우 발생
+	 *
+	 * @see com.tes.member.domain.entity.Member
+	 * @see com.tes.subject.domain.entity.Subject
+	 * @see com.tes.evaluation.domain.entity.StudentExamSubmission
+	 * @see com.tes.member.response.StudentDetailInfoResDTO
+	 * @see com.tes.member.response.SubjectScoreResDTO
+	 * @since 1.0
+	 */
 	public StudentDetailInfoResDTO getStudentDetail(long memberId, double avg, int rank) {
 	    Member member = studentRepository.findByMemberId(memberId)
 	        .orElseThrow(() -> new RuntimeException("사용자를 찾을 수 없습니다."));

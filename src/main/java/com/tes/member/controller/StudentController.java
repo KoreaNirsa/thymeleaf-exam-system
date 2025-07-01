@@ -87,6 +87,25 @@ public class StudentController {
 		return "redirect:/student";
 	}
 	
+	/**
+	 * 학생 상세 정보 페이지를 반환합니다.
+	 *
+	 * <p>
+	 * 요청된 {@code memberId}, {@code avg}, {@code rank}를 기반으로
+	 * {@link com.tes.member.response.StudentDetailInfoResDTO}를 조회한 뒤,
+	 * 해당 정보를 뷰 모델에 포함시켜 "pages/studentDetail" 템플릿을 렌더링합니다.
+	 * </p>
+	 *
+	 * @param memberId 상세 정보를 조회할 학생의 고유 ID (PathVariable)
+	 * @param avg 학생의 평균 점수 (QueryParam)
+	 * @param rank 학생의 반 내 등수 (QueryParam)
+	 * @param model Thymeleaf 뷰에 데이터를 전달하기 위한 Spring MVC 모델 객체
+	 * @return 학생 상세 정보를 렌더링하는 뷰 이름 ("pages/studentDetail")
+	 *
+	 * @see com.tes.member.service.StudentService#getStudentDetail(long, double, int)
+	 * @see com.tes.member.response.StudentDetailInfoResDTO
+	 * @since 1.0
+	 */
 	@GetMapping("/{memberId}")
 	public String detail(@PathVariable("memberId") long memberId,
 						 @RequestParam("avg") double avg,

@@ -18,7 +18,7 @@ import lombok.RequiredArgsConstructor;
  * {@link MemberService} 인터페이스의 구현체로,
  * 사용자 관련 로직을 처리하는 서비스 클래스입니다.
  * 
- * @author s
+ * @author 김재섭
  * @since 1.0
  */
 @Service
