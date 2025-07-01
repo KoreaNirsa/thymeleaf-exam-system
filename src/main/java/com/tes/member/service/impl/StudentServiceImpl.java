@@ -63,24 +63,19 @@ public class StudentServiceImpl implements StudentService {
      */
 	@Override
 	public Page<StudentListResDTO> getStudentPage(Pageable pageable) {
-		// DB에서 학생 목록 + 평균 점수를 페이징 조회 (Object[]로 구성된 결과)
 	    Page<Object[]> rawPage = studentRepository.findStudentListWithAvgScore(pageable);
 
-	    // 조회된 데이터를 기수(generation)를 기준으로 그룹화 (Map<String, List<Object[]>> 형태)
 	    Map<String, List<Object[]>> groupByGeneration = rawPage.getContent().stream()
 	        .collect(Collectors.groupingBy(row -> (String) row[1]));
 
-	    // 최종 변환된 DTO 리스트를 담을 리스트
 	    List<StudentListResDTO> dtoList = new ArrayList<>();
 
-	    // 각 기수별로 등수를 부여
 	    groupByGeneration.forEach((generation, rows) -> {
-	        AtomicInteger rank = new AtomicInteger(1); // 기수별 등수 1부터 시작
+	        AtomicInteger rank = new AtomicInteger(1);
 	        
-	        // 각 학생 데이터를 DTO로 변환하면서 등수를 추가
 	        rows.forEach(row -> {
 	            dtoList.add(new StudentListResDTO(
-	                ((Long) row[0]).longValue(),      // member_id
+	                ((Long) row[0]).longValue(),     // member_id
 	                generation,                      // generation
 	                (String) row[2],                 // name
 	                (String) row[3],                 // phone
@@ -90,15 +85,13 @@ public class StudentServiceImpl implements StudentService {
 	        });
 	    });
 
-		 // 모든 DTO를 기수 내 등수 기준으로 정렬 (기수 내 정렬은 위에서 했고, 여기선 전체 기준)
-		 // 기수(generation) 내림차순 정렬 → 동일 기수 내에서는 rank 오름차순 정렬
 	    dtoList.sort(
 	    	    Comparator
-	    	        .comparingInt((StudentListResDTO dto) -> Integer.parseInt(dto.getGeneration())) // 기수를 int 변환
-	    	        .reversed() // 최신 기수 먼저
-	    	        .thenComparing(StudentListResDTO::getRank) // 같은 기수 내에서는 등수 오름차순
+	    	        .comparingInt((StudentListResDTO dto) -> Integer.parseInt(dto.getGeneration()))
+	    	        .reversed()
+	    	        .thenComparing(StudentListResDTO::getRank)
 	    	);
-	    // 페이징 객체(PageImpl)로 반환
+
 	    return new PageImpl<>(dtoList, pageable, rawPage.getTotalElements());
 	}
 	
@@ -138,7 +131,6 @@ public class StudentServiceImpl implements StudentService {
 
 	    List<StudentExamSubmission> submissions = studentExamSubmissionRepository.findByMember_MemberId(memberId);
 
-	    // 과목별로 묶기
 	    Map<Subject, List<StudentExamSubmission>> grouped = submissions.stream()
 	        .collect(Collectors.groupingBy(StudentExamSubmission::getSubject));
 
