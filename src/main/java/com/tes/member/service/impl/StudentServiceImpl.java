@@ -155,7 +155,7 @@ public class StudentServiceImpl implements StudentService {
 	 * @since 1.0
 	 */
 	public StudentDetailInfoResDTO getStudentDetail(long memberId, double avg, int rank) {
-	    Member member = studentRepository.findByMemberId(memberId)
+	    Member member = memberRepository.findByMemberId(memberId)
 	        .orElseThrow(() -> new RuntimeException("사용자를 찾을 수 없습니다."));
 
 	    List<StudentExamSubmission> submissions = studentExamSubmissionRepository.findByMember_MemberId(memberId);
@@ -203,6 +203,33 @@ public class StudentServiceImpl implements StudentService {
 	        .build();
 	}
 	
+	/**
+	 * 사용자의 비밀번호를 변경합니다.
+	 * 
+	 * <p>
+	 * 	다음 조건을 만족할 경우에만 비밀번호를 변경합니다.
+	 * </p>
+	 * <ul>
+	 *   <li>요청한 사용자 ID({@code sessionMemberId})와 대상 사용자 ID({@code memberId})가 일치해야 합니다.</li>
+	 *   <li>새 비밀번호({@code newPassword})와 확인 비밀번호({@code confirmPassword})가 일치해야 합니다.</li>
+	 *   <li>회원 정보가 존재해야 하며, 존재하지 않을 경우 {@link IllegalArgumentException}이 발생합니다.</li>
+	 * </ul>
+	 * 
+	 * <p>
+	 * 	모든 조건을 통과하면 새 비밀번호를 인코딩하여 DB에 저장합니다.
+	 * </p>
+	 * 
+	 * @param memberId 비밀번호를 변경할 대상 회원의 ID
+	 * @param newPassword 새 비밀번호 (암호화 대상)
+	 * @param confirmPassword 새 비밀번호 확인 (일치 여부 검사)
+	 * @param sessionMemberId 세션에서 로그인된 사용자 ID (본인 확인용)
+	 * 
+	 * @throws UserException 세션 사용자와 요청 대상이 다르거나, 비밀번호 불일치 시 발생
+	 * @throws IllegalArgumentException 사용자가 존재하지 않는 경우 발생
+	 * 
+	 * @see com.tes.member.entity.Member#changePassword(String)
+	 * @since 1.0
+	 */
 	@Transactional
 	public void changePassword(long memberId, String newPassword, String confirmPassword, long sessionMemberId) {
 	

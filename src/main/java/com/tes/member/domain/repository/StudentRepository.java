@@ -69,7 +69,4 @@ public interface StudentRepository extends JpaRepository<Member, Long> {
 		    nativeQuery = true
 		)
     Page<Object[]> findStudentListWithAvgScore(Pageable pageable);
-    
-    Optional<Member> findByMemberId(long memberId);
-
 }

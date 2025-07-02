@@ -6,6 +6,16 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * 비밀번호 변경 요청 DTO입니다.
+ * <p>
+ * 	기존 비밀번호를 변경할 때 사용하는 요청 객체로,
+ * 	새 비밀번호와 비밀번호 확인 값을 포함합니다.
+ * </p>
+ * 
+ * @author
+ * @since 1.0
+ */
 @Getter
 @Setter
 public class ChangePasswordReqDTO {

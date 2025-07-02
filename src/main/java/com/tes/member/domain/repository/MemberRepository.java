@@ -27,7 +27,27 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
      */
     Optional<Member> findByGenerationAndName(String generation, String name);
 
+    /**
+     * 회원 ID를 기반으로 회원 정보를 조회합니다.
+     *
+     * @param memberId 조회할 회원의 고유 ID
+     * @return 해당 ID에 해당하는 {@link Member} 객체를 감싼 {@link Optional}  
+     *         (존재하지 않으면 빈 Optional 반환)
+     *
+     * @since 1.0
+     */
 	Optional<Member> findByMemberId(long memberId);
 
+	/**
+	 * 암호화된 비밀번호를 저장합니다.
+	 * 
+	 * <p>
+	 * 이 메서드는 기존 회원의 비밀번호를 새 값으로 업데이트하는 용도로 사용됩니다.
+	 * 내부적으로 어떤 회원의 비밀번호를 갱신할지는 구현 클래스에 따라 달라집니다.
+	 * </p>
+	 *
+	 * @param encodedPassword 암호화된 비밀번호 문자열
+	 * @since 1.0
+	 */
 	void save(String encodedPassword);
 }
