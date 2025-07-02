@@ -99,7 +99,7 @@ class MemberControllerTest {
     void testLoginFail_userNotFound() throws Exception {
         // given
         BDDMockito.given(memberService.login(any()))
-        .willThrow(new UserException("아이디가 존재하지 않습니다.", "pages/login"));
+        .willThrow(new UserException("아이디가 존재하지 않습니다."));
         
         // when & then
         mockMvc.perform(post("/login")
