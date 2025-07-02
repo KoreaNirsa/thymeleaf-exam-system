@@ -84,9 +84,11 @@
 							<td>
 								<button class="feedback-btn"
 										  type="button"
+										  th:data-subject-id="${subject.subjectId}"
 										  th:data-subject="${subject.subjectName}"
+										  th:data-student-exam-submission-id="${subject.studentExamSubmissionId}"
 										  th:data-feedback="${subject.secondFeedback != null ? subject.secondFeedback : subject.firstFeedback}"
-										  onclick="openFeedbackModal(this.dataset.subject, this.dataset.feedback)">
+										  onclick="openFeedbackModal(this.dataset.subject, this.dataset.feedback, this.dataset.subjectId, this.dataset.studentExamSubmissionId)">
 									피드백 확인
 								</button>
 							</td>

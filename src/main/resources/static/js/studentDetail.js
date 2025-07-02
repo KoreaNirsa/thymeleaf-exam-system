@@ -79,13 +79,33 @@ const feedbackForm = document.getElementById('feedbackForm');
 const feedbackContent = document.getElementById('feedbackContent');
 const currentChar = document.getElementById('currentChar');
 
-function openFeedbackModal(subjectName, feedback) {
+function openFeedbackModal(subjectName, feedback, subjectId, studentExamSubmissionId) {
+	const feedbackSubjectId = document.createElement('input');
+	feedbackSubjectId.type = 'hidden';
+	feedbackSubjectId.id = 'subjectId';
+	feedbackSubjectId.name = 'subjectId';
+	feedbackSubjectId.value = subjectId;
+	feedbackForm.appendChild(feedbackSubjectId);
+	
+	const feedbackStudentExamSubmissionId = document.createElement('input');
+	feedbackStudentExamSubmissionId.type = 'hidden';
+	feedbackStudentExamSubmissionId.id = 'studentExamSubmissionId';
+	feedbackStudentExamSubmissionId.name = 'studentExamSubmissionId';
+	feedbackStudentExamSubmissionId.value = studentExamSubmissionId;
+	feedbackForm.appendChild(feedbackStudentExamSubmissionId);
+	
+	feedbackForm.action = `/evaluation/${studentExamSubmissionId}`;
+	feedbackForm.method = 'post';
+	
     document.getElementById('feedbackSubject').value = subjectName;
     feedbackContent.value = feedback;
     feedbackModal.style.display = "block";
+	feedbackForm.onsubmit();
 }
 
 function closeFeedbackModal() {
+	document.getElementById('subjectId').remove()
+	document.getElementById('studentExamSubmissionId').remove()
     feedbackModal.style.display = "none";
 }
 
@@ -93,11 +113,11 @@ feedbackContent.addEventListener('input', function() {
     currentChar.textContent = this.value.length;
 });
 
-feedbackForm.onsubmit = (e) => {
+/*feedbackForm.onsubmit = (e) => {
     e.preventDefault();
     // 피드백 저장 로직 추가
     closeFeedbackModal();
-};
+};*/
 
 // 모달 외부 클릭 시 닫기
 window.onclick = (event) => {

@@ -21,6 +21,8 @@ import lombok.ToString;
 @Builder
 @ToString
 public class SubjectScoreResDTO {
+	private Long studentExamSubmissionId;
+	private Long subjectId;
     private String subjectName;
     private Integer firstScore;
     private Integer secondScore;

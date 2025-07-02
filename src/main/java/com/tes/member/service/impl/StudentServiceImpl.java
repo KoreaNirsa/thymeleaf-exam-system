@@ -168,6 +168,7 @@ public class StudentServiceImpl implements StudentService {
 	            Subject subject = entry.getKey();
 	            List<StudentExamSubmission> exams = entry.getValue();
 
+	            Long studentExamSubmissionId = null;
 	            Integer firstScore = null;
 	            Integer secondScore = null;
 	            String firstFeedback = null;
@@ -177,13 +178,17 @@ public class StudentServiceImpl implements StudentService {
 	                if (s.getRound() == 1) {
 	                    firstScore = s.getScore();
 	                    firstFeedback = s.getFeedback();
+	                    studentExamSubmissionId = s.getStudentExamSubmissionId();
 	                } else if (s.getRound() == 2) {
 	                    secondScore = s.getScore();
 	                    secondFeedback = s.getFeedback();
+	                    studentExamSubmissionId = s.getStudentExamSubmissionId();
 	                }
 	            }
 
 	            return SubjectScoreResDTO.builder()
+	            	.studentExamSubmissionId(studentExamSubmissionId)
+	            	.subjectId(subject.getSubjectId())
 	                .subjectName(subject.getName())
 	                .firstScore(firstScore)
 	                .secondScore(secondScore)
