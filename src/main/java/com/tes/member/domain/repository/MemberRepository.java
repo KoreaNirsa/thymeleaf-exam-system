@@ -37,17 +37,4 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
      * @since 1.0
      */
 	Optional<Member> findByMemberId(long memberId);
-
-	/**
-	 * 암호화된 비밀번호를 저장합니다.
-	 * 
-	 * <p>
-	 * 이 메서드는 기존 회원의 비밀번호를 새 값으로 업데이트하는 용도로 사용됩니다.
-	 * 내부적으로 어떤 회원의 비밀번호를 갱신할지는 구현 클래스에 따라 달라집니다.
-	 * </p>
-	 *
-	 * @param encodedPassword 암호화된 비밀번호 문자열
-	 * @since 1.0
-	 */
-	void save(String encodedPassword);
 }

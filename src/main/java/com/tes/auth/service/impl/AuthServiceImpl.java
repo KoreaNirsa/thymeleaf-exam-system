@@ -1,21 +1,21 @@
-package com.tes.member.service.impl;
+package com.tes.auth.service.impl;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.tes.auth.model.request.LoginReqDTO;
+import com.tes.auth.model.response.LoginResDTO;
+import com.tes.auth.service.AuthService;
 import com.tes.global.exception.UserException;
 import com.tes.member.domain.entity.Member;
 import com.tes.member.domain.repository.MemberRepository;
-import com.tes.member.model.request.LoginReqDTO;
-import com.tes.member.model.response.LoginResDTO;
-import com.tes.member.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
 
 /**
- * {@link MemberService} 인터페이스의 구현체로,
+ * {@link AuthService} 인터페이스의 구현체로,
  * 사용자 관련 로직을 처리하는 서비스 클래스입니다.
  * 
  * @author 김재섭
@@ -23,7 +23,7 @@ import lombok.RequiredArgsConstructor;
  */
 @Service
 @RequiredArgsConstructor
-public class MemberServiceImpl implements MemberService {
+public class AuthServiceImpl implements AuthService {
     /** 회원 정보 조회를 위한 JPA 리포지토리 */
 	private final MemberRepository userRepository;
 	
@@ -31,7 +31,7 @@ public class MemberServiceImpl implements MemberService {
 	private final PasswordEncoder passwordEncoder;
 	
     /** 인증 과정에서 로그를 기록하기 위한 Logger */
-	private final Logger logger = LogManager.getLogger(MemberServiceImpl.class);
+	private final Logger logger = LogManager.getLogger(AuthServiceImpl.class);
 
     /**
      * 사용자 로그인 요청을 처리합니다.

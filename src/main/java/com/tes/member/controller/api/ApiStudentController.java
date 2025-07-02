@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tes.auth.model.response.LoginResDTO;
 import com.tes.global.model.response.ResultVO;
 import com.tes.member.model.request.ChangePasswordReqDTO;
-import com.tes.member.model.response.LoginResDTO;
 import com.tes.member.service.StudentService;
 
 import jakarta.servlet.http.HttpSession;

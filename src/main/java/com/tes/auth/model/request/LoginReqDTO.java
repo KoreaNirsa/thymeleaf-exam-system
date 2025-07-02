@@ -1,4 +1,4 @@
-package com.tes.member.model.request;
+package com.tes.auth.model.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;

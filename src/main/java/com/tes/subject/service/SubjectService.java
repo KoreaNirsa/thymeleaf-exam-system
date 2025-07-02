@@ -2,8 +2,8 @@ package com.tes.subject.service;
 
 import java.util.List;
 
-import com.tes.member.model.request.LoginReqDTO;
-import com.tes.member.model.response.LoginResDTO;
+import com.tes.auth.model.request.LoginReqDTO;
+import com.tes.auth.model.response.LoginResDTO;
 import com.tes.subject.model.response.DashboardResDTO;
 
 /**

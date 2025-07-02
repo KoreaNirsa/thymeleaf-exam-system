@@ -1,4 +1,4 @@
-package com.tes.member.controller;
+package com.tes.auth.controller;
 
 import java.util.stream.Collectors;
 
@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.tes.auth.model.request.LoginReqDTO;
+import com.tes.auth.model.response.LoginResDTO;
+import com.tes.auth.service.AuthService;
 import com.tes.global.exception.UserException;
-import com.tes.member.model.request.LoginReqDTO;
-import com.tes.member.model.response.LoginResDTO;
-import com.tes.member.service.MemberService;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -31,8 +31,8 @@ import lombok.RequiredArgsConstructor;
  */
 @Controller
 @RequiredArgsConstructor
-public class MemberController {
-	private final MemberService loginService;
+public class AuthrController {
+	private final AuthService loginService;
 	
 	/**
 	 * 로그인 페이지를 렌더링합니다.

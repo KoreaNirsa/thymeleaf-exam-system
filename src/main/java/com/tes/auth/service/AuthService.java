@@ -1,7 +1,7 @@
-package com.tes.member.service;
+package com.tes.auth.service;
 
-import com.tes.member.model.request.LoginReqDTO;
-import com.tes.member.model.response.LoginResDTO;
+import com.tes.auth.model.request.LoginReqDTO;
+import com.tes.auth.model.response.LoginResDTO;
 
 /**
  * 회원 관련 비즈니스 로직을 정의하는 서비스 인터페이스입니다.
@@ -17,7 +17,7 @@ import com.tes.member.model.response.LoginResDTO;
  * @author 
  * @since 1.0
  */
-public interface MemberService {
+public interface AuthService {
 	
 	public LoginResDTO login(LoginReqDTO loginReqDTO);
 }

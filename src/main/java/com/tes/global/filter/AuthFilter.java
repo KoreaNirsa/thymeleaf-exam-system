@@ -6,9 +6,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import com.tes.auth.model.response.LoginResDTO;
 import com.tes.global.enums.WhitelistPath;
 import com.tes.member.domain.entity.Member;
-import com.tes.member.model.response.LoginResDTO;
 
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;

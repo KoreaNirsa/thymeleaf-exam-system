@@ -17,15 +17,15 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.tes.auth.model.request.LoginReqDTO;
+import com.tes.auth.model.response.LoginResDTO;
+import com.tes.auth.service.impl.AuthServiceImpl;
 import com.tes.global.exception.UserException;
 import com.tes.member.domain.entity.Member;
 import com.tes.member.domain.repository.MemberRepository;
-import com.tes.member.model.request.LoginReqDTO;
-import com.tes.member.model.response.LoginResDTO;
-import com.tes.member.service.impl.MemberServiceImpl;
 
 /**
- * {@link com.tes.member.service.MemberServiceImpl} 클래스의 단위 테스트를 수행합니다.
+ * {@link com.tes.auth.service.impl.AuthServiceImpl} 클래스의 단위 테스트를 수행합니다.
  *
  * <p>
  * 사용자 로그인 기능의 흐름을 검증하며, 다음 시나리오를 포함합니다:
@@ -41,9 +41,9 @@ import com.tes.member.service.impl.MemberServiceImpl;
  * 서비스 로직의 분기 및 예외 흐름을 검증하는 데 초점을 둡니다.
  * </p>
  *
- * @see com.tes.member.service.MemberServiceImpl
- * @see com.tes.member.model.request.LoginReqDTO
- * @see com.tes.member.model.response.LoginResDTO
+ * @see com.tes.auth.service.impl.AuthServiceImpl
+ * @see com.tes.auth.model.request.LoginReqDTO
+ * @see com.tes.auth.model.response.LoginResDTO
  * @since 1.0
  */
 @ExtendWith(MockitoExtension.class)
@@ -56,7 +56,7 @@ class MemberServiceImplTest {
     private PasswordEncoder passwordEncoder;
 
     @InjectMocks
-    private MemberServiceImpl memberService;
+    private AuthServiceImpl memberService;
     
     public static final String TEST_GENERATION = "3기";
     public static final String TEST_NAME = "홍길동";

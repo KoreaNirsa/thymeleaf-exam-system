@@ -1,4 +1,4 @@
-package com.tes.member.model.response;
+package com.tes.auth.model.response;
 
 import java.io.Serializable;
 

@@ -16,15 +16,15 @@ import org.springframework.context.annotation.Import;
 import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.web.servlet.MockMvc;
 
+import com.tes.auth.controller.AuthrController;
+import com.tes.auth.model.response.LoginResDTO;
+import com.tes.auth.service.AuthService;
 import com.tes.global.config.SecurityConfig;
 import com.tes.global.exception.UserException;
-import com.tes.member.controller.MemberController;
 import com.tes.member.enums.MemberRole;
-import com.tes.member.model.response.LoginResDTO;
-import com.tes.member.service.MemberService;
 
 /**
- * {@link com.tes.member.controller.MemberController}의 로그인 관련 기능을 검증하는 테스트 클래스입니다.
+ * {@link com.tes.auth.controller.AuthrController}의 로그인 관련 기능을 검증하는 테스트 클래스입니다.
  *
  * <p>WebMvcTest 환경을 이용하여 컨트롤러 단에서의 요청/응답 흐름과 예외처리, 유효성 검증 등을 테스트합니다.</p>
  *
@@ -35,10 +35,10 @@ import com.tes.member.service.MemberService;
  *     <li>세션 저장 여부</li>
  * </ul>
  *
- * @see com.tes.member.controller.MemberController
+ * @see com.tes.auth.controller.AuthrController
  * @since 1.0
  */
-@WebMvcTest(MemberController.class)
+@WebMvcTest(AuthrController.class)
 @Import(SecurityConfig.class)
 class MemberControllerTest {
 
@@ -47,7 +47,7 @@ class MemberControllerTest {
 
     @SuppressWarnings("removal")
 	@MockBean
-    private MemberService memberService;
+    private AuthService memberService;
     
     /**
      * 로그인 성공 시 사용자가 대시보드로 리다이렉트되고,

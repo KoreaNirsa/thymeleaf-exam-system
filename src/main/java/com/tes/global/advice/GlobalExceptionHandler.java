@@ -6,9 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.tes.auth.model.request.LoginReqDTO;
+import com.tes.auth.service.impl.AuthServiceImpl;
 import com.tes.global.exception.UserException;
-import com.tes.member.model.request.LoginReqDTO;
-import com.tes.member.service.impl.MemberServiceImpl;
 
 /**
  * 전역 예외 처리 클래스
@@ -16,7 +16,7 @@ import com.tes.member.service.impl.MemberServiceImpl;
  */
 @ControllerAdvice
 public class GlobalExceptionHandler {
-	private final Logger logger = LogManager.getLogger(MemberServiceImpl.class);
+	private final Logger logger = LogManager.getLogger(AuthServiceImpl.class);
 
     /**
      * 사용자 정의 로그인/인증 관련 예외 처리
