@@ -1,14 +1,22 @@
 package com.tes.global.model.response;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
-@AllArgsConstructor(staticName = "of")
 public class ResultVO<T> {
     private boolean success;
     private String message;
     private T result;
+    
+    private ResultVO(boolean success, String message, T result) {
+        this.success = success;
+        this.message = message;
+        this.result = result;
+    }
+    
+    public static <T> ResultVO<T> of(boolean success, String message, T result) {
+        return new ResultVO<>(success, message, result);
+    }
 
     public static <T> ResultVO<T> success(T result) {
         return ResultVO.of(true, "OK", result);
