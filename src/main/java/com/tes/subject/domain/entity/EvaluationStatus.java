@@ -30,7 +30,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class EvaluationStatus {
-
     /** 평가 상태 고유 식별자 */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

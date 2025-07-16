@@ -1,0 +1,88 @@
+<th:block th:fragment="container">
+	<div class="evaluation-container">
+		<div class="evaluation-header">
+			<h2 class="section-title">평가 관리</h2>
+			<button class="add-subject-btn" onclick="openSubjectModal()">
+				+ 과목 추가</button>
+		</div>
+
+		<div class="evaluation-list">
+			<div class="evaluation-card">
+				<div class="card-header">
+					<div class="header-content">
+						<h3>JavaScript 기초</h3>
+						<button class="edit-subject-btn"
+							onclick="openEditSubjectModal(this)" data-subject="JavaScript 기초"
+							data-first-date="2024-02-01" data-second-date="2024-02-15">
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+								xmlns="http://www.w3.org/2000/svg">
+                                    <path
+									d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125"
+									stroke="currentColor" stroke-width="2" stroke-linecap="round"
+									stroke-linejoin="round" />
+                                </svg>
+						</button>
+					</div>
+					<div class="eval-status pending">대기중</div>
+				</div>
+				<div class="card-content">
+					<div class="eval-info">
+						<div class="info-item">
+							<span class="label">1차 평가일</span> <span class="value">2024-02-01</span>
+						</div>
+						<div class="info-item">
+							<span class="label">2차 평가일</span> <span class="value">2024-02-15</span>
+						</div>
+					</div>
+					<div class="action-buttons">
+						<button class="edit-problem-btn"
+							onclick="openProblemModal('JavaScript 기초')">문제 편집</button>
+						<button class="start-eval-btn"
+							onclick="toggleEvaluation(this, 'JavaScript 기초')">평가 시작
+						</button>
+						<button class="view-submissions-btn"
+							onclick="openSubmissionsModal('JavaScript 기초')">제출 확인</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="evaluation-card">
+				<div class="card-header">
+					<div class="header-content">
+						<h3>React 심화</h3>
+						<button class="edit-subject-btn"
+							onclick="openEditSubjectModal(this)" data-subject="React 심화"
+							data-first-date="2024-02-10" data-second-date="2024-02-24">
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+								xmlns="http://www.w3.org/2000/svg">
+                                    <path
+									d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125"
+									stroke="currentColor" stroke-width="2" stroke-linecap="round"
+									stroke-linejoin="round" />
+                                </svg>
+						</button>
+					</div>
+					<div class="eval-status in-progress">진행중</div>
+				</div>
+				<div class="card-content">
+					<div class="eval-info">
+						<div class="info-item">
+							<span class="label">1차 평가일</span> <span class="value">2024-02-10</span>
+						</div>
+						<div class="info-item">
+							<span class="label">2차 평가일</span> <span class="value">2024-02-24</span>
+						</div>
+					</div>
+					<div class="action-buttons">
+						<button class="edit-problem-btn"
+							onclick="openProblemModal('React 심화')">문제 편집</button>
+						<button class="end-eval-btn"
+							onclick="toggleEvaluation(this, 'React 심화')">평가 종료</button>
+						<button class="view-submissions-btn"
+							onclick="openSubmissionsModal('React 심화')">제출 확인</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</th:block>

@@ -1,8 +1,9 @@
-package com.tes.subject.service;
+package com.tes.subject.service.impl;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.tes.subject.service.SubjectService;
 import org.springframework.stereotype.Service;
 
 import com.tes.subject.domain.entity.EvaluationStatus;
@@ -15,29 +16,15 @@ import com.tes.subject.model.response.DashboardResDTO;
 import lombok.RequiredArgsConstructor;
 
 /**
- * {@link SubjectService} 인터페이스의 구현체로,
- * 대시보드에 필요한 과목별 평가 상태와 제출 정보를 조합하여 응답 DTO로 가공하는 서비스입니다.
+ * 과목 관련 요청을 처리하는 서비스 구현체입니다.
  *
- * <p>
- * 과목 목록 조회 시 각 과목의 1차 평가 상태와 해당 사용자의 제출 정보를 조회하여
- * {@link DashboardResDTO} 형태로 변환합니다.
- * </p>
- *
- * <p>
- * 과목과 상태는 {@code SubjectRepository.findAllSubjectsWithFirstExamStatus()}를 통해 로드되며,
- * 각 과목별 제출 정보는 {@link StudentExamSubmissionRepository}에서 조회됩니다.
- * </p>
- *
- * @author 
+ * @author KoreaNirsa
  * @since 1.0
  */
 @Service
 @RequiredArgsConstructor
 public class SubjectServiceImpl implements SubjectService {
-    /** 과목 및 평가 상태 조회용 리포지토리 */
 	private final SubjectRepository dashboardRepository;
-	
-    /** 학생의 제출 답안 조회용 리포지토리 */
 	private final StudentExamSubmissionRepository submissionRepository;
 
     /**

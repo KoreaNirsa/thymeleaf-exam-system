@@ -1,0 +1,295 @@
+/* 에러 페이지 스타일 */
+:root {
+    --error-primary: #4f46e5;
+    --error-secondary: #818cf8;
+    --error-gradient-start: #4f46e5;
+    --error-gradient-end: #a78bfa;
+    --error-text: #1f2937;
+    --error-text-light: #6b7280;
+    --error-background: #f9fafb;
+}
+
+.error-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
+    background: var(--error-background);
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.8s ease-out;
+}
+
+.error-container.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.error-content {
+    max-width: 560px;
+    width: 100%;
+    background: white;
+    padding: 3rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.error-animation {
+    position: relative;
+    height: 180px;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.error-code {
+    font-size: 8rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--error-gradient-start), var(--error-gradient-end));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: pulse 3s infinite;
+    position: relative;
+    z-index: 5;
+    text-shadow: 0 5px 15px rgba(79, 70, 229, 0.3);
+}
+
+.error-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.2), rgba(167, 139, 250, 0.2));
+    animation: ripple 3s infinite;
+}
+
+.error-circle:nth-child(2) {
+    width: 160px;
+    height: 160px;
+    animation-delay: 0s;
+}
+
+.error-circle:nth-child(3) {
+    width: 120px;
+    height: 120px;
+    animation-delay: 0.3s;
+}
+
+.error-circle:nth-child(4) {
+    width: 80px;
+    height: 80px;
+    animation-delay: 0.6s;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0.95);
+        opacity: 0.7;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.4;
+    }
+    100% {
+        transform: scale(0.95);
+        opacity: 0.7;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.error-title {
+    font-size: 2rem;
+    color: var(--error-text);
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.error-message {
+    color: var(--error-text-light);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+}
+
+.error-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.home-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, var(--error-gradient-start), var(--error-gradient-end));
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.2), 0 2px 4px -1px rgba(79, 70, 229, 0.1);
+}
+
+.home-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px -3px rgba(79, 70, 229, 0.3), 0 4px 6px -2px rgba(79, 70, 229, 0.1);
+}
+
+.back-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    color: var(--error-text);
+    border: 1px solid #e5e7eb;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.back-btn:hover {
+    background: #f9fafb;
+    border-color: #d1d5db;
+}
+
+/* 배경 요소 */
+.error-bg-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.error-shape {
+    position: absolute;
+    border-radius: 50%;
+    animation: float-around 10s linear infinite;
+    opacity: 0.1;
+}
+
+.shape1 {
+    width: 80px;
+    height: 80px;
+    background: var(--error-primary);
+    top: 10%;
+    left: 10%;
+}
+
+.shape2 {
+    width: 120px;
+    height: 120px;
+    background: var(--error-secondary);
+    bottom: 15%;
+    right: 5%;
+}
+
+.shape3 {
+    width: 60px;
+    height: 60px;
+    background: var(--error-secondary);
+    top: 35%;
+    right: 20%;
+}
+
+.shape4 {
+    width: 40px;
+    height: 40px;
+    background: var(--error-primary);
+    bottom: 25%;
+    left: 20%;
+}
+
+.shape5 {
+    width: 100px;
+    height: 100px;
+    background: var(--error-primary);
+    top: 60%;
+    left: 40%;
+}
+
+@keyframes float-around {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+    25% {
+        transform: translate(10px, -10px) scale(1.05);
+    }
+    50% {
+        transform: translate(0, -20px) scale(1);
+    }
+    75% {
+        transform: translate(-10px, -10px) scale(0.95);
+    }
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+}
+
+/* 반응형 스타일 */
+@media (max-width: 640px) {
+    .error-content {
+        padding: 2rem;
+    }
+    
+    .error-code {
+        font-size: 6rem;
+    }
+    
+    .error-animation {
+        height: 140px;
+    }
+    
+    .error-title {
+        font-size: 1.5rem;
+    }
+    
+    .error-message {
+        font-size: 1rem;
+    }
+    
+    .error-actions {
+        flex-direction: column;
+    }
+    
+    .home-btn, .back-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}

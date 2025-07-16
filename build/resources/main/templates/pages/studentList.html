@@ -1,0 +1,12 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/base-layout}">
+	<th:block layout:fragment="pageHead">
+	    <link rel="stylesheet" href="/css/studentList.css">
+	</th:block>
+	<th:block layout:fragment="content">
+		<th:block th:replace="~{fragments/section/student/container :: studentManagementContainer}"></th:block>
+		<th:block th:replace="~{fragments/section/student/modals :: addStudentModal}"></th:block>
+		<th:block th:replace="~{fragments/scripts/submenu :: submenu}"></th:block>
+		<th:block th:replace="~{fragments/scripts/studentListScripts :: studentListScripts}"></th:block>
+	</th:block>
+</html>

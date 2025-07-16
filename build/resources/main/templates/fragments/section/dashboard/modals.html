@@ -1,0 +1,24 @@
+<div id="scoreModal" class="modal" th:fragment="scoreModal" th:each="subject : ${subjects}">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 class="section-title">평가 결과</h2>
+        <div class="score-details" th:if="${subject.score != null}">
+            <p>
+                <strong>과목:</strong>
+                <span th:text="${subject.name}"></span>
+            </p>
+            <p>
+                <strong>점수:</strong>
+                <span th:text="${subject.score}"></span>
+            </p>
+            <p>
+                <strong>피드백:</strong>
+            </p>
+            <p class="feedback-text" th:text="${subject.feedback}">
+            </p>
+        </div>
+        <div class="score-details" th:if="${subject.score == null}">
+            <p>아직 제출된 평가가 없습니다.</p>
+        </div>
+    </div>
+</div>

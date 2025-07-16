@@ -7,7 +7,7 @@ import com.tes.auth.model.response.LoginResDTO;
 import com.tes.subject.model.response.DashboardResDTO;
 
 /**
- * 과목 및 평가 관련 비즈니스 로직을 정의하는 서비스 인터페이스입니다.
+ * 과목 관련 비즈니스 로직을 정의하는 서비스 인터페이스입니다.
  * 
  * @author 
  * @since 1.0
